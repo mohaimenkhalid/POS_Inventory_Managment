@@ -1,9 +1,11 @@
 import Login from './components/auth/Login.vue';
-import register from './components/auth/register.vue';
+import Register from './components/auth/Register.vue';
+import Forget from './components/auth/Forget.vue';
 
 
 export const routes = [
   { path: '/', component: Login },
-  { path: '/login', component: register },
+  { path: '/register', component: Register },
+  { path: '/forget-password', component: Forget },
 
 ]
