@@ -11,7 +11,10 @@ const router = new VueRouter({
 
 //router import
 import {routes} from './routes';
-/*Vue.component('example-component', require('./components/ExampleComponent.vue').default);*/
+
+//Global Helper Class
+import User from './Helpers/User';
+window.User = User;
 
 const app = new Vue({
     el: '#app',
