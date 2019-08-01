@@ -5,7 +5,7 @@ class Notification{
 			    type: 'success',
 				layout: 'topRight',
 			    text: 'Successfully Done!',
-			    timeout: 1000,
+			    timeout: 3000,
 			}).show();
 		}
 
@@ -27,12 +27,22 @@ class Notification{
 			}).show();
 		}
 
-		error(){
+		warning(){
 			new Noty({
 			    type: 'warning',
 				layout: 'topRight',
 			    text: 'Ops! Something wtong',
 			    timeout: 1000,
+			}).show();
+		}
+
+
+		image_validation(){
+			new Noty({
+			    type: 'error',
+				layout: 'topRight',
+			    text: 'Ops! Upload Image less then 1mb',
+			    timeout: 3000,
 			}).show();
 		}
 }

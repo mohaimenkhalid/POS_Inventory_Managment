@@ -1,18 +1,10 @@
-
-<!--A Design by W3layouts
-Author: W3layout
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE html>
 <head>
 <title>POS</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- bootstrap-css -->
 <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css')}}" >
@@ -109,10 +101,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <span>Employee</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="typography.html">Add New</a></li>
-                        <li><a href="glyphicon.html">All Employee</a></li>
+                        <li><router-link to="/store-employee">Add New</router-link></li>
+                        <li><router-link to="/employee">All Employee</router-link></li>
                     </ul>
                 </li>
+
+
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Suppliers</span>
+                    </a>
+                    <ul class="sub">
+                        <li><router-link to="">Add Supplier</router-link></li>
+                        <li><router-link to="">All Supplier</router-link></li>
+                    </ul>
+                </li>
+
                 <li>
                     <a href="fontawesome.html">
                         <i class="fa fa-bullhorn"></i>
@@ -193,8 +199,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </aside>
 <!--sidebar end-->
 <!--main content start-->
-<section id="main-content">
-    <section class="wrapper">
+<section id="main-content" >
+    <section class="wrapper" style="min-height: 800px;">
         
             <router-view></router-view>
   
@@ -218,14 +224,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="{{ asset('backend/js/scripts.js')}}"></script>
 <script src="{{ asset('backend/js/jquery.slimscroll.js')}}"></script>
 <script src="{{ asset('backend/js/jquery.nicescroll.js')}}"></script>
-<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="{{ asset('backend/js/flot-chart/excanvas.min.js')}}"></script><![endif]-->
+{{-- [if lte IE 8]><script language="javascript" type="text/javascript" src="{{ asset('backend/js/flot-chart/excanvas.min.js')}}"></script><![endif] --}}
 <script src="{{ asset('backend/js/jquery.scrollTo.js')}}"></script>
 <!-- morris JavaScript --> 
 
 <script type="text/javascript">
 
     
-    let token = localStorage.getItem("token");
+    let token = localStorage.getItem("token")
     if (token) {
         $("#topbar").css("display", "");
         $("#leftbar").css("display", "");
