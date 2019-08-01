@@ -26,9 +26,10 @@ class User{
 		return this.hasToken();  //if return token in storage
 	}
 
-	loggedOut(){
+	/*loggedOut(){
 		AppStorage.clear(); //clear localstorage
-	}
+		window.location= '/';
+	}*/
 
 	name(){
 		if (this.loggedIn()) {    //if logged 
@@ -45,6 +46,10 @@ class User{
 		}
 		return false;
 
+	}
+
+	checksidebar(){
+		
 	}
 
 }

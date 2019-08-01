@@ -3,8 +3,10 @@
 		<div class="w3layouts-main">
 	<h2>Sign In Now</h2>
 		<form  method="post" @submit.prevent="login">
-			<input type="email" class="ggg" name="Email" placeholder="E-MAIL" required="" v-model="form.email">
-			<input type="password" class="ggg" name="Password" placeholder="PASSWORD" required="" v-model="form.password">
+			<input type="email" class="ggg" name="Email" id="inputEmail" placeholder="E-MAIL"  v-model="form.email">
+			<small class="text-danger" v-if="errors.email">{{ errors.email[0] }}</small>
+			<input type="password" class="ggg" id="password" name="password"  placeholder="PASSWORD" v-model="form.password">
+			<small class="text-danger" v-if="errors.password">{{ errors.password[0] }}</small><br>
 			<router-link to="/forget-password"> Forgot Password?</router-link>
 			
 				<div class="clearfix"></div>
@@ -28,7 +30,9 @@ export default{
 			form: {
 				email: "", 
 				password: "" 
-			}
+			},
+
+			errors: {},
 		}
 	},
 
@@ -44,12 +48,20 @@ export default{
 		login(){
 			axios.post('/api/auth/login', this.form)
 			.then(res=>{
-				//console.log(res.data)
 				User.responseAfterLogin(res);
+				Toast.fire({
+				  type: 'success',
+				  title: 'Login in successfully'
+				})
 				this.$router.push({ name: 'home' });
 			})
 			.catch(error=>{
-				console.log(error.response.data)
+				this.errors = error.response.data.errors;
+
+				Toast.fire({
+				  type: 'error',
+				  title: 'Username or Password Invalid!!'
+				})
 			})
 		}
 	}

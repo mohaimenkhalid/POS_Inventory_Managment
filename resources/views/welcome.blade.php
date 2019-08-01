@@ -41,9 +41,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
 </head>
 <body>
+    <div id="app">
 <section id="container">
 <!--header start-->
-<header class="header fixed-top clearfix">
+<header class="header fixed-top clearfix"   v-if="$route.path === '/' || $route.path === '/register' || $route.path === '/forget-password' ? false : true">
 <!--logo start-->
 <div class="brand">
     <a href="index.html" class="logo">
@@ -78,7 +79,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <ul class="dropdown-menu extended logout">
                 <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
                 <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
+                <li><router-link to="/logout"><i class="fa fa-key"></i>Logout</router-link></li>
+                
             </ul>
         </li>
         <!-- user login dropdown end -->
@@ -89,13 +91,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </header>
 <!--header end-->
 <!--sidebar start-->
-<aside>
+<aside  v-if="$route.path === '/' || $route.path === '/register' || $route.path === '/forget-password' ? false : true">
     <div id="sidebar" class="nav-collapse">
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
                 <li>
-                    <a class="active" href="index.html">
+                    <router-link  to="/home">
                         <i class="fa fa-dashboard"></i>
                         <span>Dashboard</span>
                     </a>
@@ -104,12 +106,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <i class="fa fa-book"></i>
-                        <span>UI Elements</span>
+                        <span>Employee</span>
                     </a>
                     <ul class="sub">
-                        <li><a href="typography.html">Typography</a></li>
-                        <li><a href="glyphicon.html">glyphicon</a></li>
-                        <li><a href="grids.html">Grids</a></li>
+                        <li><a href="typography.html">Add New</a></li>
+                        <li><a href="glyphicon.html">All Employee</a></li>
                     </ul>
                 </li>
                 <li>
@@ -194,71 +195,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--main content start-->
 <section id="main-content">
     <section class="wrapper">
-        <div id="app">
-            
+        
             <router-view></router-view>
-
-        </div>
-        <!-- //market-->
-        <!-- <div class="market-updates">
-            <div class="col-md-3 market-update-gd">
-                <div class="market-update-block clr-block-2">
-                    <div class="col-md-4 market-update-right">
-                        <i class="fa fa-eye"> </i>
-                    </div>
-                     <div class="col-md-8 market-update-left">
-                     <h4>Visitors</h4>
-                    <h3>13,500</h3>
-                    <p>Other hand, we denounce</p>
-                  </div>
-                  <div class="clearfix"> </div>
-                </div>
-            </div>
-            <div class="col-md-3 market-update-gd">
-                <div class="market-update-block clr-block-1">
-                    <div class="col-md-4 market-update-right">
-                        <i class="fa fa-users" ></i>
-                    </div>
-                    <div class="col-md-8 market-update-left">
-                    <h4>Users</h4>
-                        <h3>1,250</h3>
-                        <p>Other hand, we denounce</p>
-                    </div>
-                  <div class="clearfix"> </div>
-                </div>
-            </div>
-            <div class="col-md-3 market-update-gd">
-                <div class="market-update-block clr-block-3">
-                    <div class="col-md-4 market-update-right">
-                        <i class="fa fa-usd"></i>
-                    </div>
-                    <div class="col-md-8 market-update-left">
-                        <h4>Sales</h4>
-                        <h3>1,500</h3>
-                        <p>Other hand, we denounce</p>
-                    </div>
-                  <div class="clearfix"> </div>
-                </div>
-            </div>
-            <div class="col-md-3 market-update-gd">
-                <div class="market-update-block clr-block-4">
-                    <div class="col-md-4 market-update-right">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-md-8 market-update-left">
-                        <h4>Orders</h4>
-                        <h3>1,500</h3>
-                        <p>Other hand, we denounce</p>
-                    </div>
-                  <div class="clearfix"> </div>
-                </div>
-            </div>
-           <div class="clearfix"> </div>
-        </div>   -->
   
 </section>
  <!-- footer -->
-          <div class="footer">
+          <div class="footer"  v-if="$route.path === '/' || $route.path === '/register' || $route.path === '/forget-password' ? false : true">
             <div class="wthree-copyright">
               <p>© 2019 Mohaimen. All rights reserved</p>
             </div>
@@ -267,17 +209,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </section>
 <!--main content end-->
 </section>
-<script src="{{ asset('js/app.js')}}"></script>
+</div>
 
-<script src="{{ asset('backend/js/bootstrap.js')}}"></script>
+
+<script src="{{ asset('js/app.js')}}"></script>
+{{-- <script src="{{ asset('backend/js/bootstrap.js')}}"></script> --}}
 <script src="{{ asset('backend/js/jquery.dcjqaccordion.2.7.js')}}"></script>
 <script src="{{ asset('backend/js/scripts.js')}}"></script>
 <script src="{{ asset('backend/js/jquery.slimscroll.js')}}"></script>
 <script src="{{ asset('backend/js/jquery.nicescroll.js')}}"></script>
 <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="{{ asset('backend/js/flot-chart/excanvas.min.js')}}"></script><![endif]-->
 <script src="{{ asset('backend/js/jquery.scrollTo.js')}}"></script>
-<!-- morris JavaScript -->  
+<!-- morris JavaScript --> 
 
+<script type="text/javascript">
+
+    
+    let token = localStorage.getItem("token");
+    if (token) {
+        $("#topbar").css("display", "");
+        $("#leftbar").css("display", "");
+        $("#footer").css("display", "");
+    }
+
+</script> 
 
 </body>
 </html>

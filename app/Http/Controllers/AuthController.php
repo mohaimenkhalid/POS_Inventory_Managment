@@ -27,8 +27,15 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login()
+    public function login(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'email' => ['required', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:8'],
+        ]);
+
+
         $credentials = request(['email', 'password']);
 
         if (! $token = auth()->attempt($credentials)) {
@@ -96,6 +103,7 @@ class AuthController extends Controller
          $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'string', 'max:20'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -106,7 +114,7 @@ class AuthController extends Controller
         $data['password'] = Hash::make($request->password);
         DB::table('users')->insert($data);
 
-        return  $this->login($request);
+        return  $this->login($request); //direct login after registration
         
     }
 }
