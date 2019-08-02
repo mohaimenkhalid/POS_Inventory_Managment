@@ -7,8 +7,8 @@
             <div class="col-lg-12">
                     <section class="panel card">
                         <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0">
-                            <span style="float: left"><h4><b>Add New Employee</b></h4></span>
-                            <router-link to="/employee"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">View All Employee</router-link>
+                            <span style="float: left"><h4><b>Add New Supplier</b></h4></span>
+                            <router-link to="/supplier"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">View All Supplier</router-link>
 
 
                         </header>
@@ -30,38 +30,27 @@
 
 
                                <div class="form-row">
-                                <div class="form-group col-md-6">
+
+                                 <div class="form-group col-md-4">
+                                  <label for="inputSalary">shopname</label>
+                                  <input type="text" class="form-control" v-model="form.shopname" >
+                                   <small class="text-danger" v-if="errors.shopname">{{ errors.shopname[0] }}</small><br>
+                                </div> 
+
+                                <div class="form-group col-md-4">
                                   <label for="inputAddress">Address</label>
                                   <input type="text" class="form-control" v-model="form.address" >
                                    <small class="text-danger" v-if="errors.address">{{ errors.address[0] }}</small><br>
                                 </div>
-                                <div class="form-group col-md-6">
-                                  <label for="inputSalary">Salary</label>
-                                  <input type="text" class="form-control" v-model="form.salary" >
-                                   <small class="text-danger" v-if="errors.salary">{{ errors.salary[0] }}</small><br>
-                                </div>
-                              </div>
-                              <div class="form-row">
 
                                 <div class="form-group col-md-4">
                                   <label for="inputPhone">Phone No</label>
                                  <input type="number" class="form-control" v-model="form.phone" >
                                    <small class="text-danger" v-if="errors.phone">{{ errors.phone[0] }}</small><br>
                                 </div>
-
-                                <div class="form-group col-md-4">
-                                  <label for="inputNid">NID Number</label>
-                                 <input type="text" class="form-control" v-model="form.nid" >
-                                   <small class="text-danger" v-if="errors.nid">{{ errors.nid[0] }}</small><br>
-                                </div>
-                                <div class="form-group col-md-4">
-                                  <label for="inputDate">Joining Date</label>
-                                 <input type="date" class="form-control" v-model="form.joining_date" >
-                                   <small class="text-danger" v-if="errors.joining_date">{{ errors.joining_date[0] }}</small><br>
-                                </div>
-                                
                                 
                               </div>
+                              
                               <div class="form-row">
                                 
                                 <div class="form-group col-md-4">
@@ -101,10 +90,8 @@
                     name : "",
                     email : "",
                     phone : "",
-                    salary: "",
+                    shopname: "",
                     address: "",
-                    nid: "",
-                    joining_date: "",
                     photo: "", /*backend/images/noimage.png*/
                 },
 
@@ -139,9 +126,9 @@
 
         employeeInsert(){
          
-          axios.post('/api/employee/',this.form)
+          axios.post('/api/supplier/',this.form)
           .then(res=>{
-            this.$router.push({path: '/employee'});
+            this.$router.push({path: '/supplier'});
             Notification.success();
           })
           .catch(error=>{

@@ -7,8 +7,15 @@ import Logout from './components/auth/Logout.vue';
 import Home from './components/Home.vue';
 
 //employe
-import Create from './components/employee/Create.vue';
-import Index from './components/employee/Index.vue';
+import CreateEmployee from './components/employee/Create.vue';
+import Employee from './components/employee/Index.vue';
+import EditEmployee from './components/employee/Edit.vue';
+
+//employe
+import CreateSupplier from './components/supplier/Create.vue';
+import Supplier from './components/supplier/Index.vue';
+import EditSupplier from './components/supplier/Edit.vue';
+
 
 
 
@@ -20,7 +27,13 @@ export const routes = [
   { path: '/logout', component: Logout, name: 'logout' },
   { path: '/home', component: Home, name: 'home'},
   //employee
-   { path: '/store-employee', component: Create, name: 'store-employee'},
-   { path: '/employee', component: Index, name: 'employee'},
+   { path: '/store-employee', component: CreateEmployee, name: 'store-employee'},
+   { path: '/employee', component: Employee, name: 'employee'},
+   { path: '/edit-employee/:id', component: EditEmployee, name: 'edit-employee'},
+
+   //Supplier
+   { path: '/store-supplier', component: CreateSupplier, name: 'store-supplier'},
+   { path: '/supplier', component: Supplier, name: 'supplier'},
+   { path: '/edit-supplier/:id', component: EditSupplier, name: 'edit-supplier'},
 
 ]

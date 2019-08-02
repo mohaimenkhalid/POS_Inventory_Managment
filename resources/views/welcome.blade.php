@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+    <base href="/" />
 <title>POS</title>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +19,7 @@
 <link rel="stylesheet" href="{{ asset('backend/css/font.css')}}" type="text/css')}}"/>
 <link href="{{ asset('backend/css/font-awesome.css')}}" rel="stylesheet"> 
 <link rel="stylesheet" href="{{ asset('backend/css/morris.css')}}" type="text/css')}}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 <!-- calendar -->
 <link rel="stylesheet" href="{{ asset('backend/css/monthly.css')}}">
 <!-- //calendar -->
@@ -65,7 +67,7 @@
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                 <img alt="" src="{{ asset('backend/images/avatar.png') }}">
-                <span class="username">Admin</span>
+                <span class="username" id="username"></span>
                <!--  <b class="caret"></b> -->
             </a>
             <ul class="dropdown-menu extended logout">
@@ -114,86 +116,14 @@
                         <span>Suppliers</span>
                     </a>
                     <ul class="sub">
-                        <li><router-link to="">Add Supplier</router-link></li>
-                        <li><router-link to="">All Supplier</router-link></li>
+                        <li><router-link to="/store-supplier">Add Supplier</router-link></li>
+                        <li><router-link to="/supplier">All Supplier</router-link></li>
                     </ul>
                 </li>
 
-                <li>
-                    <a href="fontawesome.html">
-                        <i class="fa fa-bullhorn"></i>
-                        <span>Font awesome </span>
-                    </a>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-th"></i>
-                        <span>Data Tables</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="basic_table.html">Basic Table</a></li>
-                        <li><a href="responsive_table.html">Responsive Table</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-tasks"></i>
-                        <span>Form Components</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="form_component.html">Form Elements</a></li>
-                        <li><a href="form_validation.html">Form Validation</a></li>
-                        <li><a href="dropzone.html">Dropzone</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-envelope"></i>
-                        <span>Mail </span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="mail.html">Inbox</a></li>
-                        <li><a href="mail_compose.html">Compose Mail</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class=" fa fa-bar-chart-o"></i>
-                        <span>Charts</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="chartjs.html">Chart js</a></li>
-                        <li><a href="flot_chart.html">Flot Charts</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class=" fa fa-bar-chart-o"></i>
-                        <span>Maps</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="google_map.html">Google Map</a></li>
-                        <li><a href="vector_map.html">Vector Map</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;">
-                        <i class="fa fa-glass"></i>
-                        <span>Extra</span>
-                    </a>
-                    <ul class="sub">
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="404.html">404 Error</a></li>
-                        <li><a href="registration.html">Registration</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="login.html">
-                        <i class="fa fa-user"></i>
-                        <span>Login Page</span>
-                    </a>
-                </li>
-            </ul>            </div>
+                
+            </ul>
+        </div>
         <!-- sidebar menu end-->
     </div>
 </aside>
@@ -236,6 +166,10 @@
         $("#topbar").css("display", "");
         $("#leftbar").css("display", "");
         $("#footer").css("display", "");
+    }
+
+    if (localStorage.getItem("user")) {
+            $('#username').html(localStorage.getItem("user"));
     }
 
 </script> 

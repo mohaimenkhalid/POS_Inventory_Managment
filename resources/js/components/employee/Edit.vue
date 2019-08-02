@@ -7,14 +7,14 @@
             <div class="col-lg-12">
                     <section class="panel card">
                         <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0">
-                            <span style="float: left"><h4><b>Add New Employee</b></h4></span>
+                            <span style="float: left"><h4><b>Update Employee</b></h4></span>
                             <router-link to="/employee"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">View All Employee</router-link>
 
 
                         </header>
                         <div class="panel-body">
                         
-                          <form enctype="multiplart/form-data" @submit.prevent="employeeInsert">
+                          <form enctype="multiplart/form-data" @submit.prevent="employeeUpdate">
                               <div class="form-row">
                                 <div class="form-group col-md-6">
                                   <label for="inputName">Full Name</label>
@@ -76,11 +76,11 @@
                               <div class="form-row">
                                 
                                 <div class="form-group col-md-4">
-                                    <img :src="form.photo" alt="No image Selected"  height="150" >
+                                    <img :src="form.photo" alt="No image"  height="150" >
                                 </div>
                               </div>
                              
-                              <button type="submit" class="btn btn-primary">Submit</button>
+                              <button type="submit" class="btn btn-primary">Update</button>
                             </form>
                         </div>
                     </section>
@@ -92,9 +92,9 @@
 </template>
 
 
-<script>
+<script type="text/javascript">
     export default{
-
+    	name: 'Edit',
         data(){
             return{
                 form:{
@@ -108,19 +108,23 @@
                     photo: "", /*backend/images/noimage.png*/
                 },
 
+                employee_id: 0,
                 errors: {},
             }
         },
 
-    mounted(){
+        mounted(){
 
-        if (!User.loggedIn()) {     //check login or not
-            this.$router.push({ name: '/' });
-        }
-    },
+	        if (!User.loggedIn()) {     //check login or not
+	            this.$router.push({ name: '/' });
+	        }
 
+        	this.employee_id = this.$route.params.id;
+        	this.clickedEmpoyee();
 
-    methods: {
+        },
+
+        methods: {
         onFileSelected(event){ 
           let file = event.target.files[0]; 
          
@@ -137,9 +141,19 @@
           }
         },
 
-        employeeInsert(){
+        clickedEmpoyee(){
+        		axios.get('/api/employee/'+this.employee_id)
+        		.then(res=>{
+        			this.form = res.data;
+        		})
+        		.catch(error=>{
+        			console.log('error')
+        		})
+        },
+
+        employeeUpdate(){
          
-          axios.post('/api/employee/',this.form)
+          axios.patch('/api/employee/'+this.employee_id,this.form)
           .then(res=>{
             this.$router.push({path: '/employee'});
             Notification.success();
@@ -149,5 +163,6 @@
           })
         }
     }
+    
 }
 </script>
