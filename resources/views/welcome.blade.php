@@ -121,6 +121,40 @@
                     </ul>
                 </li>
 
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Category</span>
+                    </a>
+                    <ul class="sub">
+                        <li><router-link to="/store-category">Add Category</router-link></li>
+                        <li><router-link to="/category">All Category</router-link></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Product</span>
+                    </a>
+                    <ul class="sub">
+                        <li><router-link to="/store-product">Add Product</router-link></li>
+                        <li><router-link to="/product">All Product</router-link></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <i class="fa fa-book"></i>
+                        <span>Expense</span>
+                    </a>
+                    <ul class="sub">
+                        <li><router-link to="/store-expense">Add Expense</router-link></li>
+                        <li><router-link to="/expense">All Expense</router-link></li>
+                    </ul>
+                </li>
+
                 
             </ul>
         </div>
