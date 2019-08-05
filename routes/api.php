@@ -16,6 +16,14 @@ Route::group([
 });
 
 Route::apiResource('/employee', 'Api\EmployeeController');
+Route::apiResource('/customer', 'Api\CustomerController');
 Route::apiResource('/supplier', 'Api\SupplierController');
 Route::apiResource('/category', 'Api\CategoryController');
 Route::apiResource('/product', 'Api\ProductController');
+Route::post('/salary/paid/{id}', 'Api\SalaryController@paid');
+Route::get('/salary/', 'Api\SalaryController@allSalary');
+Route::get('/view-salary/{id}', 'Api\SalaryController@viewSalary');
+Route::get('/salary/delete/{id}', 'Api\SalaryController@deleteSalary');
+Route::post('/stock/update/{id}', 'Api\SalaryController@updatestock');
+
+Route::get('/getting/product/{id}', 'Api\PosController@getProduct');

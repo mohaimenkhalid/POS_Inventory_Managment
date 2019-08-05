@@ -11,7 +11,12 @@ import CreateEmployee from './components/employee/Create.vue';
 import Employee from './components/employee/Index.vue';
 import EditEmployee from './components/employee/Edit.vue';
 
-//employe
+//Customer
+import CreateCustomer from './components/customer/Create.vue';
+import Customer from './components/customer/Index.vue';
+import EditCustomer from './components/customer/Edit.vue';
+
+//Supplier
 import CreateSupplier from './components/supplier/Create.vue';
 import Supplier from './components/supplier/Index.vue';
 import EditSupplier from './components/supplier/Edit.vue';
@@ -31,8 +36,19 @@ import CreateExpense from './components/expense/Create.vue';
 import Expense from './components/expense/Index.vue';
 import EditExpense from './components/expense/Edit.vue';
 
+//Salary
+import Salary from './components/salary/AllEmployee.vue';
+import PaySalary from './components/salary/Create.vue';
+import AllSalary from './components/salary/index.vue';
+import ViewSalary from './components/salary/View.vue';
 
+//Stock
+import Stock from './components/stock/Stock.vue';
+import EditStock from './components/stock/Edit.vue';
 
+//POS
+
+import Pos from './components/pos/PointOfSell.vue';
 
 
 
@@ -47,6 +63,12 @@ export const routes = [
    { path: '/store-employee', component: CreateEmployee, name: 'store-employee'},
    { path: '/employee', component: Employee, name: 'employee'},
    { path: '/edit-employee/:id', component: EditEmployee, name: 'edit-employee'},
+
+    //Customer
+   { path: '/store-customer', component: CreateCustomer, name: 'store-customer'},
+   { path: '/customer', component: Customer, name: 'customer'},
+   { path: '/edit-customer/:id', component: EditCustomer, name: 'edit-customer'},
+
 
    //Supplier
    { path: '/store-supplier', component: CreateSupplier, name: 'store-supplier'},
@@ -67,5 +89,19 @@ export const routes = [
    { path: '/store-expense', component: CreateExpense, name: 'store-expense'},
    { path: '/expense', component: Expense, name: 'expense'},
    { path: '/edit-expense/:id', component: EditExpense, name: 'edit-expense'},
+
+    //Salary
+   { path: '/given-salary', component: Salary, name: 'given-salary'},
+   { path: '/pay/salary/:id', component: PaySalary, name: 'pay/salary'},
+   { path: '/salary', component: AllSalary, name: 'salary'},
+   { path: '/view-salary/:id', component: ViewSalary, name: 'view-salary'},
+
+   //Stock
+  
+   { path: '/stock', component: Stock, name: 'stock'},
+   { path: '/edit-stock/:id', component: EditStock, name: 'edit-stock'},
+
+   //POS
+   { path: '/pos', component: Pos, name: 'pos'}, 
 
 ]

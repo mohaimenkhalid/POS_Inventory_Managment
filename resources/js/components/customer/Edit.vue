@@ -7,14 +7,14 @@
             <div class="col-lg-12">
                     <section class="panel card">
                         <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0">
-                            <span style="float: left"><h4><b>Update Supplier</b></h4></span>
-                            <router-link to="/supplier"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">View All Supplier</router-link>
+                            <span style="float: left"><h4><b>Update Customer Information</b></h4></span>
+                            <router-link to="/supplier"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">View All Customer</router-link>
 
 
                         </header>
                         <div class="panel-body">
                         
-                          <form enctype="multiplart/form-data" @submit.prevent="supplierUpdate">
+                          <form enctype="multiplart/form-data" @submit.prevent="customerUpdate">
                               <div class="form-row">
                                 <div class="form-group col-md-6">
                                   <label for="inputName">Full Name</label>
@@ -31,11 +31,7 @@
 
                                <div class="form-row">
 
-                                 <div class="form-group col-md-4">
-                                  <label for="inputSalary">shopname</label>
-                                  <input type="text" class="form-control" v-model="form.shopname" >
-                                   <small class="text-danger" v-if="errors.shopname">{{ errors.shopname[0] }}</small><br>
-                                </div> 
+                                
 
                                 <div class="form-group col-md-4">
                                   <label for="inputAddress">Address</label>
@@ -90,12 +86,11 @@
                     name : "",
                     email : "",
                     phone : "",
-                    shopname: "",
                     address: "",
                     photo: "", /*backend/images/noimage.png*/
                 },
 
-                supplier_id: 0,
+                customer_id: 0,
                 errors: {},
             }
         },
@@ -106,8 +101,8 @@
 	            this.$router.push({ name: '/' });
 	        }
 
-        	this.supplier_id = this.$route.params.id;
-        	this.clickedSupplier();
+        	this.customer_id = this.$route.params.id;
+        	this.clickedCustomer();
 
         },
 
@@ -128,8 +123,8 @@
           }
         },
 
-        clickedSupplier(){
-        		axios.get('/api/supplier/'+this.supplier_id)
+        clickedCustomer(){
+        		axios.get('/api/customer/'+this.customer_id)
         		.then(res=>{
         			this.form = res.data;
         		})
@@ -138,11 +133,11 @@
         		})
         },
 
-        supplierUpdate(){
+        customerUpdate(){
          
-          axios.patch('/api/supplier/'+this.supplier_id,this.form)
+          axios.patch('/api/customer/'+this.customer_id,this.form)
           .then(res=>{
-            this.$router.push({path: '/supplier'});
+            this.$router.push({path: '/customer'});
             Notification.success();
           })
           .catch(error=>{

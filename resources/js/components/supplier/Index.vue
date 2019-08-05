@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="form-w3layouts">
+		<div class="form-w3layouts" style="min-height: 800px;">
         
         <div class="row">
             <div class="col-lg-12">
@@ -15,7 +15,7 @@
 
                           
                         <span><b>Search</b> <input type="text" name="search" v-model="searchkey"></span>
-                          <table  class="table" ui-jq="footable" ui-options='{
+                          <table  class="table table-bordered" ui-jq="footable" ui-options='{
                             "paging": {
                               "enabled": true
                             },

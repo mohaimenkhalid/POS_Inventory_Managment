@@ -1,13 +1,13 @@
 <template>
 	<div>
-		<div class="form-w3layouts" style="min-height: 800px;" >
+		<div class="form-w3layouts" style="min-height: 800px;">
         
         <div class="row">
             <div class="col-lg-12">
                     <section class="panel card">
                         <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0">
-                            <span style="float: left"><h4><b>All Product List</b></h4></span>
-                            <router-link to="/store-product"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">Add New</router-link>
+                            <span style="float: left"><h4><b>Stock</b></h4></span>
+                            
 
 
                         </header>
@@ -16,7 +16,7 @@
                           
                         <span><b>Search</b> <input type="text" name="search" v-model="searchkey"></span>
                         <br><br>
-                          <table border  class="table table-bordered" ui-jq="footable" ui-options='{
+                          <table class="table table-bordered" ui-jq="footable" ui-options='{
                             "paging": {
                               "enabled": true
                             },
@@ -35,10 +35,10 @@
                                 <th data-breakpoints="xs">Category</th>
                                 <th data-breakpoints="xs">Supplier</th>                                                                          
                                 <th data-breakpoints="xs">Buying Price</th>                                                                          
-                                <th data-breakpoints="xs">Selling Price</th>                                                                          
                                 <th data-breakpoints="xs">Quantity</th>                                                                          
                                 <th data-breakpoints="xs">Root</th>                                                                          
                                <th data-breakpoints="xs sm md" data-title="DOB">Buying Date</th>
+                              <th data-breakpoints="xs">Status</th>                                                                          
                                  <th>Action</th>
                               </tr>
                             </thead>
@@ -56,13 +56,16 @@
                                 <td>{{ product.category.category_name }}</td>
                                 <td>{{ product.supplier.name }}</td>
                                 <td>{{ product.buying_price }}</td>
-                                <td>{{ product.selling_price }}</td>
                                 <td>{{ product.product_quantity }}</td>
                                 <td>{{ product.root }}</td>
-                                <td>{{ product.buying_date }}</td>
+                                <td>{{ product.buying_date }}</td> 
+                                <td >
+                                  <span v-if="product.product_quantity >0" class="badge badge-success">Available</span>
+                                  <span v-if="product.product_quantity < 1" class="badge badge-danger">Stock out</span>
+                                </td>
                                 <td>
-                                  <router-link :to="'/edit-product/'+product.id"  class="btn btn-primary btn-sm">Edit</router-link>
-                                  <button @click="deleteEmployee(product.id)" type="button" class="btn btn-danger btn-sm">Delete</button></td>
+                                  <router-link :to="'/edit-stock/'+product.id"  class="btn btn-primary btn-sm">Add Stock</router-link>
+                                 </td>
                               </tr>
                               
                             </tbody>
@@ -106,41 +109,9 @@
           this.products = res.data;
         })
         .catch()
-      },
-
-      deleteEmployee(id){
-
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if (result.value) {
-
-              axios.delete('/api/product/'+id)
-              .then(res=>{
-                 this.products = this.products.filter(product=>{
-                    return product.id !=  id
-                 })
-              })
-              .catch(()=>{
-                this.router.push({ path: '/product'});
-              })
-
-              Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-              )
-            }
-          })
-
-
       }
+
+     
     },
 
     computed:{

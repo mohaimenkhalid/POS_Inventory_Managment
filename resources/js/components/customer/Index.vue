@@ -1,20 +1,20 @@
 <template>
 	<div>
-		<div class="form-w3layouts" style="min-height: 800px;" >
+		<div class="form-w3layouts" style="min-height: 800px;">
         
         <div class="row">
             <div class="col-lg-12">
                     <section class="panel card">
                         <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0">
-                            <span style="float: left"><h4><b>All Employee List</b></h4></span>
-                            <router-link to="/store-employee"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">Add New</router-link>
+                            <span style="float: left"><h4><b>All Customer List</b></h4></span>
+                            <router-link to="/store-customer"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">Add New</router-link>
 
 
                         </header>
                         <div class="panel-body">
 
                           
-                        <span><b>Search</b> <input type="text" name="search" v-model="searchkey"></span>
+                        <span><b>Search</b> <input type="text" name="search" v-model="searchkey"></span><br><br>
                           <table  class="table table-bordered" ui-jq="footable" ui-options='{
                             "paging": {
                               "enabled": true
@@ -30,9 +30,9 @@
                                 <th data-breakpoints="xs">S/L</th>
                                 <th data-breakpoints="xs">Name</th>
                                 <th >Photo</th>
-                                <th data-breakpoints="xs">Phone</th>
-                                <th data-breakpoints="xs">Salary</th>                                                                          
-                               <th data-breakpoints="xs sm md" data-title="DOB">Joining Date</th>
+                                <th data-breakpoints="xs">Phone</th>                                                                          
+                                <th data-breakpoints="xs">Email</th>                                                                          
+                               <th data-breakpoints="xs sm md" data-title="DOB">Address</th>
                                  <th>Action</th>
                               </tr>
                             </thead>
@@ -42,16 +42,16 @@
                               </tr>
                             </tbody>
                             <tbody>
-                              <tr data-expanded="true" v-for="(employee, index) in filtersearch">
+                              <tr data-expanded="true" v-for="(customer, index) in filtersearch">
                                 <td>{{ index+1 }}</td>
-                                <td>{{ employee.name }}</td>
-                                <td><img :src="employee.photo" width="100"></td>
-                                <td>{{ employee.phone }}</td>
-                                <td>{{ employee.salary }}</td>
-                                <td>{{ employee.joining_date }}</td>
+                                <td>{{ customer.name }}</td>
+                                <td><img :src="customer.photo" width="60"></td>
+                                <td>{{ customer.phone }}</td>
+                                 <td>{{ customer.email }}</td>
+                                <td>{{ customer.address }}</td>
                                 <td>
-                                  <router-link :to="'/edit-employee/'+employee.id"  class="btn btn-primary btn-sm">Edit</router-link>
-                                  <button @click="deleteEmployee(employee.id)" type="button" class="btn btn-danger btn-sm">Delete</button></td>
+                                  <router-link :to="'/edit-customer/'+customer.id"  class="btn btn-primary btn-sm">Edit</router-link>
+                                  <button @click="deleteCustomer(customer.id)" type="button" class="btn btn-danger btn-sm">Delete</button></td>
                               </tr>
                               
                             </tbody>
@@ -70,7 +70,7 @@
     export default{
       data(){
             return{
-                employees: [],
+                customers: [],
 
                 loadingstatus: true,
 
@@ -84,20 +84,20 @@
             this.$router.push({ name: '/' });
         }
 
-        this.employee();
+        this.customer();
     },
 
     methods: {
-      employee(){
-        axios.get('/api/employee/')
+      customer(){
+        axios.get('/api/customer/')
         .then(res=>{
           this.loadingstatus = false;
-          this.employees = res.data;
+          this.customers = res.data;
         })
         .catch()
       },
 
-      deleteEmployee(id){
+      deleteCustomer(id){
 
           Swal.fire({
             title: 'Are you sure?',
@@ -110,14 +110,14 @@
           }).then((result) => {
             if (result.value) {
 
-              axios.delete('/api/employee/'+id)
+              axios.delete('/api/customer/'+id)
               .then(res=>{
-                 this.employees = this.employees.filter(employee=>{
-                    return employee.id !=  id
+                 this.customers = this.customers.filter(customer=>{
+                    return customer.id !=  id
                  })
               })
               .catch(()=>{
-                this.router.push({ path: '/employee'});
+                this.router.push({ path: '/customer'});
               })
 
               Swal.fire(
@@ -134,8 +134,8 @@
 
     computed:{
       filtersearch(){
-       return this.employees.filter(employee=>{
-          return employee.name.match(this.searchkey);
+       return this.customers.filter(customer=>{
+          return customer.phone.match(this.searchkey);
         });
       }
     }

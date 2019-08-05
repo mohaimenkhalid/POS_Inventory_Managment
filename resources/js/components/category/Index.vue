@@ -1,10 +1,10 @@
 <template>
 	<div>
-		<div class="form-w3layouts">
+		<div class="form-w3layouts" style="min-height: 800px;">
         
         <div class="row">
-           <div class="col-lg-3"></div>
-            <div class="col-lg-6">
+           <div class="col-lg-2"></div>
+            <div class="col-lg-8">
                     <section class="panel card">
                         <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0">
                             <span style="float: left"><h4><b>All Category List</b></h4></span>
@@ -15,8 +15,8 @@
                         <div class="panel-body">
 
                           
-                        <span><b>Search</b> <input type="text" name="search" v-model="searchkey"></span>
-                          <table  class="table" ui-jq="footable" ui-options='{
+                        <span><b>Search</b> <input type="text" name="search" v-model="searchkey"></span><br><br>
+                          <table  class="table table-bordered" ui-jq="footable" ui-options='{
                             "paging": {
                               "enabled": true
                             },

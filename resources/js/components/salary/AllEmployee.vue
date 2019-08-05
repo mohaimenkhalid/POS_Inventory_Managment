@@ -6,9 +6,9 @@
             <div class="col-lg-12">
                     <section class="panel card">
                         <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0">
-                            <span style="float: left"><h4><b>All Employee List</b></h4></span>
-                            <router-link to="/store-employee"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">Add New</router-link>
-
+                            <span style="float: left"><h4><b>Employee Salary List</b></h4></span>
+                           
+                            <router-link to="/salary"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">View Salary Details</router-link>
 
                         </header>
                         <div class="panel-body">
@@ -31,8 +31,7 @@
                                 <th data-breakpoints="xs">Name</th>
                                 <th >Photo</th>
                                 <th data-breakpoints="xs">Phone</th>
-                                <th data-breakpoints="xs">Salary</th>                                                                          
-                               <th data-breakpoints="xs sm md" data-title="DOB">Joining Date</th>
+                                <th data-breakpoints="xs">Salary</th>                                                                     
                                  <th>Action</th>
                               </tr>
                             </thead>
@@ -48,10 +47,10 @@
                                 <td><img :src="employee.photo" width="100"></td>
                                 <td>{{ employee.phone }}</td>
                                 <td>{{ employee.salary }}</td>
-                                <td>{{ employee.joining_date }}</td>
+                               
                                 <td>
-                                  <router-link :to="'/edit-employee/'+employee.id"  class="btn btn-primary btn-sm">Edit</router-link>
-                                  <button @click="deleteEmployee(employee.id)" type="button" class="btn btn-danger btn-sm">Delete</button></td>
+                                  <router-link :to="'/pay/salary/'+employee.id"  class="btn btn-primary btn-sm">Pay Salary</router-link>
+                                </td>
                               </tr>
                               
                             </tbody>
@@ -96,41 +95,8 @@
         })
         .catch()
       },
-
-      deleteEmployee(id){
-
-          Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-          }).then((result) => {
-            if (result.value) {
-
-              axios.delete('/api/employee/'+id)
-              .then(res=>{
-                 this.employees = this.employees.filter(employee=>{
-                    return employee.id !=  id
-                 })
-              })
-              .catch(()=>{
-                this.router.push({ path: '/employee'});
-              })
-
-              Swal.fire(
-                'Deleted!',
-                'Your file has been deleted.',
-                'success'
-              )
-            }
-          })
-
-
-      }
     },
+
 
     computed:{
       filtersearch(){

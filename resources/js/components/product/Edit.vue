@@ -1,7 +1,7 @@
 <template>
     <div>
 
-        <div class="form-w3layouts">
+        <div class="form-w3layouts" style="min-height: 800px;"> 
         
         <div class="row">
             <div class="col-lg-12">

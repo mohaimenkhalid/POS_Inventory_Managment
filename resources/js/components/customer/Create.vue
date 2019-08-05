@@ -7,14 +7,14 @@
             <div class="col-lg-12">
                     <section class="panel card">
                         <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0">
-                            <span style="float: left"><h4><b>Update Supplier</b></h4></span>
-                            <router-link to="/supplier"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">View All Supplier</router-link>
+                            <span style="float: left"><h4><b>Add New Customer</b></h4></span>
+                            <router-link to="/customer"  style="float: right; padding-top: 10px;" type="submit" class="btn btn-primary">View All Customer</router-link>
 
 
                         </header>
                         <div class="panel-body">
                         
-                          <form enctype="multiplart/form-data" @submit.prevent="supplierUpdate">
+                          <form enctype="multiplart/form-data" @submit.prevent="customerInsert">
                               <div class="form-row">
                                 <div class="form-group col-md-6">
                                   <label for="inputName">Full Name</label>
@@ -31,11 +31,6 @@
 
                                <div class="form-row">
 
-                                 <div class="form-group col-md-4">
-                                  <label for="inputSalary">shopname</label>
-                                  <input type="text" class="form-control" v-model="form.shopname" >
-                                   <small class="text-danger" v-if="errors.shopname">{{ errors.shopname[0] }}</small><br>
-                                </div> 
 
                                 <div class="form-group col-md-4">
                                   <label for="inputAddress">Address</label>
@@ -81,37 +76,32 @@
 </template>
 
 
-<script type="text/javascript">
+<script>
     export default{
-    	name: 'Edit',
+
         data(){
             return{
                 form:{
                     name : "",
                     email : "",
                     phone : "",
-                    shopname: "",
                     address: "",
                     photo: "", /*backend/images/noimage.png*/
                 },
 
-                supplier_id: 0,
                 errors: {},
             }
         },
 
-        mounted(){
+    mounted(){
 
-	        if (!User.loggedIn()) {     //check login or not
-	            this.$router.push({ name: '/' });
-	        }
+        if (!User.loggedIn()) {     //check login or not
+            this.$router.push({ name: '/' });
+        }
+    },
 
-        	this.supplier_id = this.$route.params.id;
-        	this.clickedSupplier();
 
-        },
-
-        methods: {
+    methods: {
         onFileSelected(event){ 
           let file = event.target.files[0]; 
          
@@ -128,21 +118,11 @@
           }
         },
 
-        clickedSupplier(){
-        		axios.get('/api/supplier/'+this.supplier_id)
-        		.then(res=>{
-        			this.form = res.data;
-        		})
-        		.catch(error=>{
-        			console.log('error')
-        		})
-        },
-
-        supplierUpdate(){
+        customerInsert(){
          
-          axios.patch('/api/supplier/'+this.supplier_id,this.form)
+          axios.post('/api/customer/',this.form)
           .then(res=>{
-            this.$router.push({path: '/supplier'});
+            this.$router.push({path: '/customer'});
             Notification.success();
           })
           .catch(error=>{
@@ -150,6 +130,5 @@
           })
         }
     }
-    
 }
 </script>

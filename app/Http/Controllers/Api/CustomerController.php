@@ -4,16 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Model\Supplier;
+use App\Model\Customer;
 use Image;
 
-class SupplierController extends Controller
+class CustomerController extends Controller
 {
-
-   /* public function __construct()
-    {
-        $this->middleware('JWT', ['except' => ['login', 'signup']] );
-    }*/
     /**
      * Display a listing of the resource.
      *
@@ -21,11 +16,12 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $supplier = Supplier::all();
-        return response()->json($supplier);
+        $customer = Customer::all();
+        return response()->json($customer);
     }
 
-   
+    
+
     /**
      * Store a newly created resource in storage.
      *
@@ -36,9 +32,7 @@ class SupplierController extends Controller
     {
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:employees'],
             'phone' => ['required', 'string', 'max:20'],
-            'shopname' => ['required', 'string'],
             'address' => ['required'],
         ]);
 
@@ -48,27 +42,25 @@ class SupplierController extends Controller
             $sub = substr($request->photo, 0, $strpos); // cut string 0 to ';' position
             $ex = explode('/', $sub)[1]; //explode from '/'
             $name = time().'.'.$ex; //time() gives a name and ex get a extension and then join here
-            $location = ('backend/images/supplier/'.$name);  // which location we want to save
+            $location = ('backend/images/customer/'.$name);  // which location we want to save
             $img = Image::make($request->photo)->resize(240,200); //make image
             $img->save($location); //save to location
 
-            $employee = new Supplier;
-            $employee->name = $request->name;
-            $employee->email = $request->email;
-            $employee->phone = $request->phone;
-            $employee->shopname = $request->shopname;
-            $employee->address = $request->address;
-            $employee->photo = $location;
-            $employee->save();
+            $customer = new Customer;
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->phone = $request->phone;
+            $customer->address = $request->address;
+            $customer->photo = $location;
+            $customer->save();
        }else{
 
-            $employee = new Supplier;
-            $employee->name = $request->name;
-            $employee->email = $request->email;
-            $employee->phone = $request->phone;
-            $employee->shopname = $request->shopname;
-            $employee->address = $request->address;
-            $employee->save();
+            $customer = new Customer;
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->phone = $request->phone;
+            $customer->address = $request->address;
+            $customer->save();
 
        }
 
@@ -83,11 +75,20 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        $supplier = Supplier::find($id);
-        return response()->json($supplier);
+        $customer = Customer::find($id);
+        return response()->json($customer);
     }
 
-    
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
 
     /**
      * Update the specified resource in storage.
@@ -101,41 +102,38 @@ class SupplierController extends Controller
 
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:employees'],
             'phone' => ['required', 'string', 'max:20'],
-            'shopname' => ['required', 'string'],
             'address' => ['required'],
         ]);
 
-        $supplier = Supplier::find($id);
+        $customer = Customer::find($id);
 
-        if ($request->photo != $supplier->photo) {  //database image and edited image  if didn't match new image insert and old image unlink
+        if ($request->photo != $customer->photo) {  //database image and edited image  if didn't match new image insert and old image unlink
 
             $strpos = strpos($request->photo, ';'); //get string position
             $sub = substr($request->photo, 0, $strpos); // cut string 0 to ';' position
             $ex = explode('/', $sub)[1]; //explode from '/'
             $name = time().'.'.$ex; //time() gives a name and ex get a extension and then join here
-            $location = ('backend/images/supplier/'.$name);  // which location we want to save
+            $location = ('backend/images/customer/'.$name);  // which location we want to save
             $img = Image::make($request->photo)->resize(240,200); //make image
             $img->save($location); //save to location
 
-            $image_path = public_path($supplier->photo);
+            $image_path = public_path($customer->photo);
                 if (file_exists($image_path)) {
                     @unlink($image_path);
                 }
 
         }else{
 
-            $location = $supplier->photo;
+            $location = $customer->photo;
         }
 
-            $supplier->name = $request->name;
-            $supplier->email = $request->email;
-            $supplier->phone = $request->phone;
-            $supplier->shopname = $request->shopname;
-            $supplier->address = $request->address;
-            $supplier->photo = $location;
-            $supplier->save();
+            $customer->name = $request->name;
+            $customer->email = $request->email;
+            $customer->phone = $request->phone;
+            $customer->address = $request->address;
+            $customer->photo = $location;
+            $customer->save();
 
     }
 
@@ -147,11 +145,11 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $supplier = Supplier::find($id);
-        $image_path = public_path($supplier->photo);
+        $customer = Customer::find($id);
+        $image_path = public_path($customer->photo);
         if (file_exists($image_path)) {
             @unlink($image_path);
         }
-        $supplier->delete();
+        $customer->delete();
     }
 }

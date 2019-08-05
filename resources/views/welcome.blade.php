@@ -20,6 +20,7 @@
 <link href="{{ asset('backend/css/font-awesome.css')}}" rel="stylesheet"> 
 <link rel="stylesheet" href="{{ asset('backend/css/morris.css')}}" type="text/css')}}"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <!-- calendar -->
 <link rel="stylesheet" href="{{ asset('backend/css/monthly.css')}}">
 <!-- //calendar -->
@@ -90,16 +91,26 @@
         <!-- sidebar menu start-->
         <div class="leftside-navigation">
             <ul class="sidebar-menu" id="nav-accordion">
+
+               
+
                 <li>
                     <router-link  to="/home">
-                        <i class="fa fa-dashboard"></i>
+                         <img src="/backend/images/sidebar/dashboad.png">
                         <span>Dashboard</span>
-                    </a>
+                    </router-link>
+                </li>
+
+                 <li class="" style="background: #fc3158;">
+                    <router-link  to="/pos">
+                        <img src="/backend/images/sidebar/pos.png">
+                        <span><b>POS</b></span>
+                    </router-link>
                 </li>
                 
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <img src="/backend/images/sidebar/employee.png">
                         <span>Employee</span>
                     </a>
                     <ul class="sub">
@@ -108,12 +119,23 @@
                     </ul>
                 </li>
 
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                       <img src="/backend/images/sidebar/customer.png">
+                        <span>Customer</span>
+                    </a>
+                    <ul class="sub">
+                        <li><router-link to="/store-customer">Add Customer</router-link></li>
+                        <li><router-link to="/customer">All Customer</router-link></li>
+                    </ul>
+                </li>
+
 
 
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
-                        <span>Suppliers</span>
+                        <img src="/backend/images/sidebar/supplier.png">
+                        <span>Supplier</span>
                     </a>
                     <ul class="sub">
                         <li><router-link to="/store-supplier">Add Supplier</router-link></li>
@@ -124,7 +146,7 @@
 
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <img src="/backend/images/sidebar/category.png">
                         <span>Category</span>
                     </a>
                     <ul class="sub">
@@ -135,7 +157,7 @@
 
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                        <img src="/backend/images/sidebar/product.png">
                         <span>Product</span>
                     </a>
                     <ul class="sub">
@@ -146,12 +168,42 @@
 
                 <li class="sub-menu">
                     <a href="javascript:;">
-                        <i class="fa fa-book"></i>
+                         <img src="/backend/images/sidebar/expense.png">
                         <span>Expense</span>
                     </a>
                     <ul class="sub">
                         <li><router-link to="/store-expense">Add Expense</router-link></li>
                         <li><router-link to="/expense">All Expense</router-link></li>
+                    </ul>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <img src="/backend/images/sidebar/salary.png">
+                        <span>Salary</span>
+                    </a>
+                    <ul class="sub">
+                        <li><router-link to="/given-salary">Pay Salary</router-link></li>
+                        <li><router-link to="/salary">All Salary</router-link></li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <router-link  to="/stock">
+                      <img src="/backend/images/sidebar/stock.png">
+                        <span>Stock</span>
+                    </router-link>
+                </li>
+
+                <li class="sub-menu">
+                    <a href="javascript:;">
+                        <img src="/backend/images/sidebar/report.png">
+                        <span>Reports</span>
+                    </a>
+                    <ul class="sub">
+                        <li><router-link to="/given-salary">Pay Salary</router-link></li>
+                        <li><router-link to="/salary">All Salary</router-link></li>
                     </ul>
                 </li>
 
