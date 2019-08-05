@@ -235,7 +235,8 @@
 
 
 <script src="{{ asset('js/app.js')}}"></script>
-{{-- <script src="{{ asset('backend/js/bootstrap.js')}}"></script> --}}
+<script src="{{ ('backend/js/jquery2.0.3.min.js') }}"></script>
+<script src="{{ asset('backend/js/bootstrap.js')}}"></script>
 <script src="{{ asset('backend/js/jquery.dcjqaccordion.2.7.js')}}"></script>
 <script src="{{ asset('backend/js/scripts.js')}}"></script>
 <script src="{{ asset('backend/js/jquery.slimscroll.js')}}"></script>
@@ -259,6 +260,8 @@
     }
 
 </script> 
+
+
 
 </body>
 </html>

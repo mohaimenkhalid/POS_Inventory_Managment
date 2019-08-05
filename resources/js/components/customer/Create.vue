@@ -4,7 +4,8 @@
         <div class="form-w3layouts" style="min-height: 800px;">
         
         <div class="row">
-            <div class="col-lg-12">
+           <div class="col-lg-2"></div>
+            <div class="col-lg-8">
                     <section class="panel card">
                         <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0">
                             <span style="float: left"><h4><b>Add New Customer</b></h4></span>
@@ -32,13 +33,13 @@
                                <div class="form-row">
 
 
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                   <label for="inputAddress">Address</label>
                                   <input type="text" class="form-control" v-model="form.address" >
                                    <small class="text-danger" v-if="errors.address">{{ errors.address[0] }}</small><br>
                                 </div>
 
-                                <div class="form-group col-md-4">
+                                <div class="form-group col-md-6">
                                   <label for="inputPhone">Phone No</label>
                                  <input type="number" class="form-control" v-model="form.phone" >
                                    <small class="text-danger" v-if="errors.phone">{{ errors.phone[0] }}</small><br>

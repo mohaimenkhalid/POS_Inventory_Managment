@@ -27,3 +27,6 @@ Route::get('/salary/delete/{id}', 'Api\SalaryController@deleteSalary');
 Route::post('/stock/update/{id}', 'Api\SalaryController@updatestock');
 
 Route::get('/getting/product/{id}', 'Api\PosController@getProduct');
+Route::post('/addTocart/{id}', 'Api\CartController@AddToCart');
+Route::get('/cart/product', 'Api\CartController@cartProduct');
+Route::get('/cart/delete/{id}', 'Api\CartController@removeCartItem');

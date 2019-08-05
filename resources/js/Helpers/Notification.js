@@ -9,6 +9,15 @@ class Notification{
 			}).show();
 		}
 
+		cart_success(){
+			new Noty({
+			    type: 'success',
+				layout: 'topRight',
+			    text: 'Product Added Successfully!',
+			    timeout: 3000,
+			}).show();
+		}
+
 		alert(){
 			new Noty({				
 			    type: 'alert',

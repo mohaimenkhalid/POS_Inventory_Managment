@@ -10,8 +10,85 @@
             <section class="panel card">
               <header class="clearfix card-hader"  style="padding: 20px 10px 20px 10px; background: #DDEDE0;box-shadow: -1px 9px 36px -10px rgba(0,0,0,0.74);">
                             <span style="float: left"><h4><b>Expense Insert</b></h4></span>
-                             <button type="button" style="float: right; " class="btn btn-danger btn-sm">Add Customer</button></td>
+                             <button data-toggle="modal" data-target="#exampleModal" type="button" style="float: right; " class="btn btn-danger btn-sm">Add Customer</button></td>
+
+                             <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">New Customer Add</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeModal">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body">
+                                <!-- Modal Body -->
+                                              <form enctype="multiplart/form-data" @submit.prevent="customerInsert">
+                                                <div class="form-row">
+                                                  <div class="form-group col-md-6">
+                                                    <label for="inputName">Full Name</label>
+                                                    <input type="text" class="form-control" v-model="form.name">
+                                                    <small class="text-danger" v-if="errors.name">{{ errors.name[0] }}</small><br>
+                                                  </div>
+                                                  <div class="form-group col-md-6">
+                                                    <label for="inputPassword4">Email Address</label>
+                                                    <input type="Email" class="form-control" v-model="form.email" >
+                                                     <small class="text-danger" v-if="errors.email">{{ errors.email[0] }}</small><br>
+                                                  </div>
+                                                </div>
+
+
+                                                 <div class="form-row">
+
+
+                                                  <div class="form-group col-md-6">
+                                                    <label for="inputAddress">Address</label>
+                                                    <input type="text" class="form-control" v-model="form.address" >
+                                                     <small class="text-danger" v-if="errors.address">{{ errors.address[0] }}</small><br>
+                                                  </div>
+
+                                                  <div class="form-group col-md-6">
+                                                    <label for="inputPhone">Phone No</label>
+                                                   <input type="number" class="form-control" v-model="form.phone" >
+                                                     <small class="text-danger" v-if="errors.phone">{{ errors.phone[0] }}</small><br>
+                                                  </div>
+                                                  
+                                                </div>
+                                                
+                                                <div class="form-row">
+                                                  
+                                                  <div class="form-group col-md-6">
+                                                  <label for="inputPhoto">Select Image</label>
+                                                   <input type="file" class="custom-file-input" id="inputGroupFile04" @change="onFileSelected" >
+                                                  <label class="custom-file-label" for="inputGroupFile04" >Choose file</label>
+                                                  <!-- <small class="text-danger" v-if="errors.photo">{{ errors.photo[0] }}</small><br> -->
+                                                  </div>
+                                                  
+                                                </div>
+
+                                                <div class="form-row">
+                                                  
+                                                  <div class="form-group col-md-4">
+                                                      <img :src="form.photo" alt="No image Selected"  height="150" >
+                                                  </div>
+                                                </div>
+                                               
+                                                <button type="submit" class="btn btn-primary" >Submit</button>
+                                              </form>
+
+
+
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
               </header>
+
+
               <br><br>
                <div class="panel-body">
                
@@ -43,39 +120,18 @@
                               </tr>
                             </tbody>
                             <tbody>
-                              <tr data-expanded="true" >
-                                <td>Hp 8440 Lapytop</td>
-                                <td>2</td>
-                                <td>42000</td>
-                                <td>84000</td>
-                                
+                              <tr data-expanded="true"  v-for="cart in carts">
+                                <td>{{ cart.pro_name }}</td>
                                 <td>
-                                  
-                                  <button type="button" class="btn btn-danger btn-sm">X</button></td>
+                                  <button class="bg-color: red;">-</button>
+                                  <input type="text"  size="2" :value="cart.pro_quantity " style="text-align: center">
+                                  <button>+</button>
+                                </td>
+                                <td>{{ cart.pro_price }}</td>
+                                <td>{{ cart.sub_total }}</td>
+                                <td><button @click.prevent="removeCartItem(cart.id)" type="button" class="btn btn-danger btn-sm">X</button></td>
                               </tr>
 
-                              <tr data-expanded="true" >
-                                <td>RAM 8GB</td>
-                                <td>2</td>
-                                <td>4000</td>
-                                <td>8000</td>
-                                
-                                <td>
-                                  
-                                  <button type="button" class="btn btn-danger btn-sm">X</button></td>
-                              </tr>
-
-                              <tr data-expanded="true" >
-                                <td>LG monitor 22"</td>
-                                <td>1</td>
-                                <td>15000</td>
-                                <td>15000</td>
-                                
-                                <td>
-                                  
-                                  <button type="button" class="btn btn-danger btn-sm">X</button></td>
-                              </tr>
-                              
                             </tbody>
                           </table>
 
@@ -148,10 +204,10 @@
                         </ul>
                         </li>
 
-                        <!-- Tab panes -->
+                <!-- Tab panes -->
                         <div class="tab-content">
                           <div class="tab-pane active" id="allproduct">
-                            <!-- all product-->
+                      <!-- all product-->
                                <div class="panel-body"  style="height: 800px; overflow: scroll;">
                                     <span id="inp"><b>Search</b> <input type="text" name="search" placeholder="Search Product" v-model="searchkey"></span><br><br>
                                   <div class="row">
@@ -160,29 +216,31 @@
                                      <p  style="text-align: center"><img src="/backend/images/loading.gif" ></p>
                                   </div>
                            
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-6" v-for="(product, index) in filtersearch" style=" text-align: center; margin-bottom: 1rem"> 
-                                    <a href="">
-                                      <div class="card" style="width: 8.5rem; min-height:11rem;">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-6" v-for="(product, index) in filtersearch" style=" text-align: center; margin-bottom: 1rem;"> 
+
+                                    <a href @click.prevent="addToCart(product.id)">
+                                      <div class="card" style=" min-height:11rem;">
                                           
                                             <div class="card-body">
                               
-                                              <img :src="product.image"  id="card_image">
-                                              <small class="card-title">{{ product.product_name }}</small>
+                                              <img :src="product.image"  id="card_image"><br>
+                                              <small class="card-title">{{ product.product_name }}</small><br>
                                               <span v-if="product.product_quantity >0" class="badge badge-success">Available ({{ product.product_quantity }})</span>
                                           <span v-if="product.product_quantity < 1" class="badge badge-danger">Stock out</span>
                                             </div>
                                       </div>
                                     </a>
+
                                     </div>   
                                   </div>
                                 </div>
                           </div>
 
                           <div class="tab-pane" id="subproduct">
-                              <!-- subproduct -->
+                    <!-- subproduct -->
 
-                              <!-- all product-->
-                               <div class="panel-body"  style="height: 800px; overflow: scroll;">
+                      <!-- all product-->
+                            <div class="panel-body"  style="height: 800px; overflow: scroll;">
                                     <span id="inp"><b>Search</b> <input type="text" name="search" placeholder="Search Product" v-model="getsearchkey"></span><br><br>
                                   <div class="row">
                                     <!-- loading status -->
@@ -218,6 +276,7 @@
         </div>
     </div>
   </div>
+</div>
 </template>
 
 <style>
@@ -271,6 +330,12 @@
     border-color: #dee2e6 #dee2e6 #f8fafc;
 }
 
+.nav-tabs  li.active  a, .nav-tabs li.active a:focus, .nav-tabs  li.active a:hover {
+    background-color: #007bff !important;
+    color: #fff;
+    border: 0px solid #3F515F;
+}
+
 .nav li a{
   color: #007bff;
 }
@@ -301,8 +366,18 @@
     export default{
       data(){
             return{
-                products: [],
 
+                form:{
+                    name : "",
+                    email : "",
+                    phone : "",
+                    address: "",
+                    photo: "", /*backend/images/noimage.png*/
+                },
+
+                errors: {},
+
+                products: [],
                 loadingstatus: true,
                 imageloadingstatus: true,
 
@@ -312,6 +387,7 @@
                 getproducts: [],
                 ariaselected: true,
                 customers: {},
+                carts: [],
 
             }
         },
@@ -325,9 +401,99 @@
         this.product();
         this.allcategory();
         this.customer();
+        this.cartproduct();
     },
 
     methods: {
+
+    //cart
+      addToCart(id){
+       
+       axios.post('/api/addTocart/'+ id)
+          .then(res=>{
+             this.cartproduct();
+            Notification.cart_success();
+          })
+          .catch(error=>{
+              console.log(error);
+          })
+      },
+
+      cartproduct(){
+        axios.get('/api/cart/product')
+        .then(res=>{
+          this.loadingstatus = false;
+          this.carts = res.data;
+        })
+        .catch()
+      },
+
+
+      removeCartItem(id){
+        Swal.fire({
+            title: 'Are you sure to remove Item?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, remove it!'
+          }).then((result) => {
+            if (result.value) {
+
+              axios.get('/api/cart/delete/'+id)
+              .then(res=>{
+
+                //this.cartproduct(); or
+                 this.carts = this.carts.filter(cart=>{
+                    return cart.id !=  id
+                 })
+              })
+              .catch(()=>{
+                this.router.push({ path: '/pos'});
+              })
+
+              Swal.fire(
+                'Removed!',
+                'Your Product has been removed.',
+                'success'
+              )
+            }
+          })
+
+      },
+
+
+      onFileSelected(event){ 
+          let file = event.target.files[0]; 
+         
+          if (file.size > 1048770) {
+            Notification.image_validation();
+            /*this.form.photo = 'backend/images/noimage.png';*/
+          }else{
+              let reader = new FileReader();
+              reader.onload = event => {
+                this.form.photo = event.target.result;
+                //console.log(event.target.result);
+              }
+              reader.readAsDataURL(file);
+          }
+        },
+
+
+        customerInsert(){
+         
+          axios.post('/api/customer/',this.form)
+          .then(res=>{
+            /*this.$router.push({path: '/customer'});*/
+            this.customer();
+            $('#closeModal').click();
+            Notification.success();
+          })
+          .catch(error=>{
+           this.errors = error.response.data.errors;
+          })
+        },
+
       product(){
         axios.get('/api/product/')
         .then(res=>{
