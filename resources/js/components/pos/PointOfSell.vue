@@ -115,20 +115,35 @@
                               </tr>
                             </thead>
                             <tbody>
-                              <tr v-if="loadingstatus">
-                                <td colspan="12"><p style="text-align: center"><img src="/backend/images/loading.gif" ></p></td>
+                              <tr v-if="loadingcartstatus">
+                                <td colspan="5"><p style="text-align: center"><img src="/backend/images/loading.gif" ></p></td>
                               </tr>
                             </tbody>
                             <tbody>
                               <tr data-expanded="true"  v-for="cart in carts">
                                 <td>{{ cart.pro_name }}</td>
                                 <td>
-                                  <button class="bg-color: red;">-</button>
-                                  <input type="text"  size="2" :value="cart.pro_quantity " style="text-align: center">
-                                  <button>+</button>
+                                  
+                                  <span>
+                                    <button class="btn btn-sm btn-danger" @click="cartDecrement(cart.id)" v-if="cart.pro_quantity >= 2">-</button>
+                                  <button class="btn btn-sm btn-danger" @click="cartDecrement(cart.id)" v-else="" disabled>-</button>
+
+                                  <input type="text"  size="2" :value="cart.pro_quantity " style="text-align: center" disabled>
+
+                                  <button class="btn btn-sm btn-success" @click="cartIncrement(cart.id)" > + </button>
+                                  </span>
+
                                 </td>
-                                <td>{{ cart.pro_price }}</td>
-                                <td>{{ cart.sub_total }}</td>
+                                <td>
+                                <span class="load_modal" v-if="buttonloadingstatus && cart.id == cartid" style="text-align: center;"> <img src="/backend/images/button_loading.gif" width="25" ></span>
+                                
+                                <span v-else=""> {{ cart.pro_price }}</span>
+
+                               </td>
+                                <td>
+                                <span class="load_modal" v-if="buttonloadingstatus && cart.id == cartid" style="text-align: center;"> <img src="/backend/images/button_loading.gif" width="25" ></span>
+                               <span v-else=""> {{ cart.sub_total }} </span>
+                              </td>
                                 <td><button @click.prevent="removeCartItem(cart.id)" type="button" class="btn btn-danger btn-sm">X</button></td>
                               </tr>
 
@@ -139,43 +154,48 @@
 
 
                           <ul class="list-group">
-                            <li class="list-group-item"><span class="fleft">Total Quantity:</span> <span style="font-weight: bold;" class="fright">
-                            10</span></li>
-                            <li class="list-group-item"><span class="fleft">Sub Total:</span> <span style="font-weight: bold;" class="fright">
-                            10</span></li>
+                            <li class="list-group-item" v-if="loadingcartstatus"> <p style="text-align: center"><img src="/backend/images/loading.gif" ></p></li>
+                            <li class="list-group-item"><span class="fleft">Total Quantity:</span> <span style="font-weight: bold;" class="fright">{{ qty }}
+                           </span></li>
+                            <li class="list-group-item"><span class="fleft">Sub Total:</span> <span style="font-weight: bold;" class="fright"> {{ subtotal }} ৳
+                            </span></li>
                             <li class="list-group-item"><span class="fleft">Vat:</span> <span style="font-weight: bold;" class="fright">
-                            5%</span></li>
+                            {{ ((subtotal * vats.vat)/100) }} ৳ ( {{ vats.vat }} %
+                          </span></li>
                             <li class="list-group-item"><span class="fleft">Total:</span> <span style="font-weight: bold;" class="fright">
-                            150000 ৳</span></li>
+                            {{ subtotal+((subtotal * vats.vat)/100) }} ৳</span>
+                          </li>
                           </ul>
 
                           <hr>
+
+                          <form @submit.prevent="orderNow">
                             <span for="inputAddress">Customer Name</span>
-                             <select class="form-control" >
+                             <select class="form-control"  v-model="customer_id">
                                     <option value="" disabled>Select Category</option>
-                                    <option value=""  v-for="customer in customers">
+                                    <option value="customer.id"  v-for="customer in customers">
                                     {{ customer.name }}</option>
                             </select>
 
                             <br>
                          
                             <span for="inputAddress">Pay</span>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" v-model="pay" required>
                             <br>
                             <span for="inputAddress">Due</span>
-                            <input type="text" class="form-control" >
+                            <input type="text" class="form-control"  v-model="due" required>
                             <br>
                             <span for="inputAddress">Payment method</span>
-                             <select class="form-control" >
-                                    <option value="" >Hand Cash</option>
-                                    <option value="" >Check</option>
-                                    <option value="" >Gify Card</option>
+                             <select class="form-control"  v-model="payby">
+                                    <option value="HandCash" >Hand Cash</option>
+                                    <option value="Check" >Check</option>
+                                    <option value="GiftCard" >Gift Card</option>
                                    
                             </select>
                             <br>
                             <button class="btn btn-primary">Submit</button>
 
-                        
+                        </form>
 
                    
                  </div>
@@ -248,7 +268,7 @@
                                      <p  style="text-align: center"><img src="/backend/images/loading.gif" ></p>
                                   </div>
                                     <div class="col-lg-3 col-md-3 col-sm-3 col-6" v-for="(product, index) in getfiltersearch" style=" text-align: center; margin-bottom: 1rem"> 
-                                    <a href="">
+                                    <a href @click.prevent="addToCart(product.id)">
                                       <div class="card" style="width: 8.5rem; min-height:11rem;">
                                           
                                             <div class="card-body">
@@ -375,11 +395,19 @@
                     photo: "", /*backend/images/noimage.png*/
                 },
 
+                customer_id: "",
+                pay: "",
+                due: "",
+                payby: "",
+
                 errors: {},
 
                 products: [],
                 loadingstatus: true,
                 imageloadingstatus: true,
+                loadingcartstatus: true,
+                buttonloadingstatus: false,
+                cartid: 0,
 
                 searchkey: "",
                 getsearchkey: "",
@@ -388,6 +416,7 @@
                 ariaselected: true,
                 customers: {},
                 carts: [],
+                vats: '',
 
             }
         },
@@ -402,15 +431,66 @@
         this.allcategory();
         this.customer();
         this.cartproduct();
+        this.vat();
+       
     },
 
+
+
+    computed:{
+      filtersearch(){
+       return this.products.filter(employee=>{
+          return employee.product_name.match(this.searchkey);
+        });
+      },
+
+      getfiltersearch(){
+        return this.getproducts.filter(getproduct=>{
+          return getproduct.product_name.match(this.getsearchkey);
+        });
+      },
+
+      qty(){
+           let sum=0;
+           for(let i =0; i < this.carts.length; i++ ){
+              sum += (parseFloat(this.carts[i].pro_quantity));
+           }
+           return sum;
+         },
+
+      subtotal(){
+            let sum=0;
+              for(let i =0; i < this.carts.length; i++){
+              sum += (parseFloat(this.carts[i].pro_quantity) * parseFloat(this.carts[i].pro_price));
+            }
+            return sum;
+         },
+
+    },
+    
     methods: {
+
+      orderNow(){
+          alert("sfsf");
+      },
+      vat(){
+          axios.get('/api/vat')
+        .then(res=>{
+          this.vats = res.data;
+        })
+        .catch(error=>{
+          console.log(error);
+        })
+          
+      },
 
     //cart
       addToCart(id){
-       
+        this.buttonloadingstatus = true,
        axios.post('/api/addTocart/'+ id)
           .then(res=>{
+            this.buttonloadingstatus = false
+            this.cartid = id;
              this.cartproduct();
             Notification.cart_success();
           })
@@ -422,7 +502,7 @@
       cartproduct(){
         axios.get('/api/cart/product')
         .then(res=>{
-          this.loadingstatus = false;
+          this.loadingcartstatus = false;
           this.carts = res.data;
         })
         .catch()
@@ -460,6 +540,35 @@
             }
           })
 
+      },
+
+
+      cartIncrement(id){
+        this.buttonloadingstatus = true,
+          axios.post('/api/cart/increment/'+ id)
+          .then(res=>{
+             this.cartproduct();
+            Notification.success();
+            this.buttonloadingstatus = false
+            this.cartid = id;
+          })
+          .catch(error=>{
+              console.log(error);
+          })
+      },
+
+      cartDecrement(id){
+        this.buttonloadingstatus = true,
+          axios.post('/api/cart/decrement/'+ id)
+          .then(res=>{
+             this.cartproduct();
+            Notification.success();
+            this.buttonloadingstatus = false
+            this.cartid = id;
+          })
+          .catch(error=>{
+              console.log(error);
+          })
       },
 
 
@@ -532,19 +641,6 @@
       
     },
 
-    computed:{
-      filtersearch(){
-       return this.products.filter(employee=>{
-          return employee.product_name.match(this.searchkey);
-        });
-      },
-
-      getfiltersearch(){
-        return this.getproducts.filter(getproduct=>{
-          return getproduct.product_name.match(this.getsearchkey);
-        });
-      }
-    }
 
 
    
