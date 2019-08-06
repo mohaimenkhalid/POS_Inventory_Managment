@@ -34,3 +34,4 @@ Route::post('/cart/increment/{id}', 'Api\CartController@cartIncrement');
 Route::post('/cart/decrement/{id}', 'Api\CartController@cartDecrement');
 
 Route::get('/vat', 'Api\CartController@vats');
+Route::post('/ordernow', 'Api\PosController@ordernow');

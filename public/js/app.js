@@ -3916,26 +3916,47 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     orderNow: function orderNow() {
-      alert("sfsf");
-    },
-    vat: function vat() {
       var _this3 = this;
 
+      var total = this.subtotal + this.subtotal * this.vats.vat / 100;
+      var data = {
+        total: total,
+        qty: this.qty,
+        subtotal: this.subtotal,
+        vat: this.vats.vat,
+        customer_id: this.customer_id,
+        pay: this.pay,
+        due: this.due,
+        payby: this.payby
+      };
+      axios.post('/api/ordernow/', data).then(function (res) {
+        _this3.$router.push({
+          path: '/home'
+        });
+
+        Notification.success();
+      })["catch"](function (error) {
+        _this3.errors = error.response.data.errors;
+      });
+    },
+    vat: function vat() {
+      var _this4 = this;
+
       axios.get('/api/vat').then(function (res) {
-        _this3.vats = res.data;
+        _this4.vats = res.data;
       })["catch"](function (error) {
         console.log(error);
       });
     },
     //cart
     addToCart: function addToCart(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.buttonloadingstatus = true, axios.post('/api/addTocart/' + id).then(function (res) {
-        _this4.buttonloadingstatus = false;
-        _this4.cartid = id;
+        _this5.buttonloadingstatus = false;
+        _this5.cartid = id;
 
-        _this4.cartproduct();
+        _this5.cartproduct();
 
         Notification.cart_success();
       })["catch"](function (error) {
@@ -3943,15 +3964,15 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     cartproduct: function cartproduct() {
-      var _this5 = this;
+      var _this6 = this;
 
       axios.get('/api/cart/product').then(function (res) {
-        _this5.loadingcartstatus = false;
-        _this5.carts = res.data;
+        _this6.loadingcartstatus = false;
+        _this6.carts = res.data;
       })["catch"]();
     },
     removeCartItem: function removeCartItem(id) {
-      var _this6 = this;
+      var _this7 = this;
 
       Swal.fire({
         title: 'Are you sure to remove Item?',
@@ -3964,11 +3985,11 @@ __webpack_require__.r(__webpack_exports__);
         if (result.value) {
           axios.get('/api/cart/delete/' + id).then(function (res) {
             //this.cartproduct(); or
-            _this6.carts = _this6.carts.filter(function (cart) {
+            _this7.carts = _this7.carts.filter(function (cart) {
               return cart.id != id;
             });
           })["catch"](function () {
-            _this6.router.push({
+            _this7.router.push({
               path: '/pos'
             });
           });
@@ -3977,22 +3998,9 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     cartIncrement: function cartIncrement(id) {
-      var _this7 = this;
-
-      this.buttonloadingstatus = true, axios.post('/api/cart/increment/' + id).then(function (res) {
-        _this7.cartproduct();
-
-        Notification.success();
-        _this7.buttonloadingstatus = false;
-        _this7.cartid = id;
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    cartDecrement: function cartDecrement(id) {
       var _this8 = this;
 
-      this.buttonloadingstatus = true, axios.post('/api/cart/decrement/' + id).then(function (res) {
+      this.buttonloadingstatus = true, axios.post('/api/cart/increment/' + id).then(function (res) {
         _this8.cartproduct();
 
         Notification.success();
@@ -4002,8 +4010,21 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    onFileSelected: function onFileSelected(event) {
+    cartDecrement: function cartDecrement(id) {
       var _this9 = this;
+
+      this.buttonloadingstatus = true, axios.post('/api/cart/decrement/' + id).then(function (res) {
+        _this9.cartproduct();
+
+        Notification.success();
+        _this9.buttonloadingstatus = false;
+        _this9.cartid = id;
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    onFileSelected: function onFileSelected(event) {
+      var _this10 = this;
 
       var file = event.target.files[0];
 
@@ -4014,53 +4035,53 @@ __webpack_require__.r(__webpack_exports__);
         var reader = new FileReader();
 
         reader.onload = function (event) {
-          _this9.form.photo = event.target.result; //console.log(event.target.result);
+          _this10.form.photo = event.target.result; //console.log(event.target.result);
         };
 
         reader.readAsDataURL(file);
       }
     },
     customerInsert: function customerInsert() {
-      var _this10 = this;
+      var _this11 = this;
 
       axios.post('/api/customer/', this.form).then(function (res) {
         /*this.$router.push({path: '/customer'});*/
-        _this10.customer();
+        _this11.customer();
 
         $('#closeModal').click();
         Notification.success();
       })["catch"](function (error) {
-        _this10.errors = error.response.data.errors;
+        _this11.errors = error.response.data.errors;
       });
     },
     product: function product() {
-      var _this11 = this;
+      var _this12 = this;
 
       axios.get('/api/product/').then(function (res) {
-        _this11.loadingstatus = false;
-        _this11.products = res.data;
+        _this12.loadingstatus = false;
+        _this12.products = res.data;
       })["catch"]();
     },
     allcategory: function allcategory() {
-      var _this12 = this;
+      var _this13 = this;
 
       axios.get('/api/category/').then(function (res) {
-        _this12.categories = res.data;
+        _this13.categories = res.data;
       })["catch"]();
     },
     subproduct: function subproduct(id) {
-      var _this13 = this;
+      var _this14 = this;
 
       axios.get('/api/getting/product/' + id).then(function (res) {
-        _this13.loadingstatus = false;
-        _this13.getproducts = res.data;
+        _this14.loadingstatus = false;
+        _this14.getproducts = res.data;
       })["catch"]();
     },
     customer: function customer() {
-      var _this14 = this;
+      var _this15 = this;
 
       axios.get('/api/customer/').then(function (res) {
-        _this14.customers = res.data;
+        _this15.customers = res.data;
       })["catch"]();
     }
   }
@@ -50969,26 +50990,11 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("td", [
-                              _vm.buttonloadingstatus && cart.id == _vm.cartid
-                                ? _c(
-                                    "span",
-                                    {
-                                      staticClass: "load_modal",
-                                      staticStyle: { "text-align": "center" }
-                                    },
-                                    [
-                                      _c("img", {
-                                        attrs: {
-                                          src:
-                                            "/backend/images/button_loading.gif",
-                                          width: "25"
-                                        }
-                                      })
-                                    ]
-                                  )
-                                : _c("span", [
-                                    _vm._v(" " + _vm._s(cart.pro_price))
-                                  ])
+                              _vm._v(
+                                "\n                                \n                                \n                                " +
+                                  _vm._s(cart.pro_price) +
+                                  "\n\n                               "
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", [
@@ -51157,6 +51163,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        attrs: { required: "" },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter
@@ -51181,7 +51188,7 @@ var render = function() {
                         _vm._l(_vm.customers, function(customer) {
                           return _c(
                             "option",
-                            { attrs: { value: "customer.id" } },
+                            { domProps: { value: customer.id } },
                             [
                               _vm._v(
                                 "\n                                    " +
@@ -51268,6 +51275,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "form-control",
+                        attrs: { required: "" },
                         on: {
                           change: function($event) {
                             var $$selectedVal = Array.prototype.filter

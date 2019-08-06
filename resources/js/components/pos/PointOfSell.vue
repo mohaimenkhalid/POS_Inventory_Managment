@@ -135,9 +135,9 @@
 
                                 </td>
                                 <td>
-                                <span class="load_modal" v-if="buttonloadingstatus && cart.id == cartid" style="text-align: center;"> <img src="/backend/images/button_loading.gif" width="25" ></span>
                                 
-                                <span v-else=""> {{ cart.pro_price }}</span>
+                                
+                                {{ cart.pro_price }}
 
                                </td>
                                 <td>
@@ -171,9 +171,9 @@
 
                           <form @submit.prevent="orderNow">
                             <span for="inputAddress">Customer Name</span>
-                             <select class="form-control"  v-model="customer_id">
+                             <select class="form-control"  v-model="customer_id" required>
                                     <option value="" disabled>Select Category</option>
-                                    <option value="customer.id"  v-for="customer in customers">
+                                    <option :value="customer.id"  v-for="customer in customers">
                                     {{ customer.name }}</option>
                             </select>
 
@@ -186,7 +186,7 @@
                             <input type="text" class="form-control"  v-model="due" required>
                             <br>
                             <span for="inputAddress">Payment method</span>
-                             <select class="form-control"  v-model="payby">
+                             <select class="form-control"  v-model="payby" required>
                                     <option value="HandCash" >Hand Cash</option>
                                     <option value="Check" >Check</option>
                                     <option value="GiftCard" >Gift Card</option>
@@ -471,7 +471,21 @@
     methods: {
 
       orderNow(){
-          alert("sfsf");
+          let total = this.subtotal+((this.subtotal * this.vats.vat)/100);
+
+          let data = { total:total, qty:this.qty, subtotal:this.subtotal, vat:this.vats.vat,  customer_id: this.customer_id, pay: this.pay, due:this.due, payby: this.payby  }
+
+
+          axios.post('/api/ordernow/',data)
+          .then(res=>{
+            this.$router.push({path: '/home'});
+            Notification.success();
+          })
+          .catch(error=>{
+           this.errors = error.response.data.errors;
+          })
+
+
       },
       vat(){
           axios.get('/api/vat')
