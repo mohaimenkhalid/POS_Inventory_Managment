@@ -28,7 +28,7 @@
 <script src="{{ ('backend/js/jquery2.0.3.min.js') }}"></script>
 <script src="{{ ('backend/js/raphael-min.js') }}"></script>
 <script src="{{ ('backend/js/morris.js') }}"></script>
-<script src="{{ ('backend/js/iCalendar.css') }}"></script>
+
 
 
 
@@ -43,8 +43,8 @@
 <header class="header fixed-top clearfix"   v-if="$route.path === '/' || $route.path === '/register' || $route.path === '/forget-password' ? false : true">
 <!--logo start-->
 <div class="brand">
-    <a href="index.html" class="logo">
-        VISITORS
+    <a href="#" class="logo">
+        Inventory
     </a>
     <div class="sidebar-toggle-box">
         <div class="fa fa-bars"></div>
@@ -256,8 +256,6 @@
 {{-- [if lte IE 8]><script language="javascript" type="text/javascript" src="{{ asset('backend/js/flot-chart/excanvas.min.js')}}"></script><![endif] --}}
 <script src="{{ asset('backend/js/jquery.scrollTo.js')}}"></script>
 
-
-<script src="{{ asset('backend/js/iCalendar.js')}}"></script>
 <!-- morris JavaScript --> 
 
 <script type="text/javascript">

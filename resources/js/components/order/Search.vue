@@ -45,7 +45,7 @@
                         </header>
                         <div class="panel-body">
                         
-                          <div class="table-responsive text-nowrap">
+                        <div class="table-responsive text-nowrap">
 
                           <table  class="table table-bordered" ui-jq="footable" ui-options='{
                             "paging": {

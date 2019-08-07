@@ -14,7 +14,8 @@
                         <div class="panel-body">
 
                           
-                        <span><b>Search</b> <input type="text" name="search" v-model="searchkey"></span>
+                        <span><b>Search</b> <input type="text" name="search" v-model="searchkey"></span><br><br>
+                        <div class="table-responsive text-nowrap">
                           <table  class="table table-bordered" ui-jq="footable" ui-options='{
                             "paging": {
                               "enabled": true
@@ -56,7 +57,7 @@
                               
                             </tbody>
                           </table>
-
+                        </div>
                         </div>
                     </section>
 

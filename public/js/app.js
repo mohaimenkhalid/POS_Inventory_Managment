@@ -2524,6 +2524,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2910,6 +2912,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -3468,6 +3472,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3544,6 +3550,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -5251,6 +5259,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5501,6 +5511,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5579,6 +5591,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -5819,6 +5832,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -6271,6 +6285,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -49320,71 +49335,75 @@ var render = function() {
                 _c("br"),
                 _c("br"),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-bordered",
-                    attrs: {
-                      "ui-jq": "footable",
-                      "ui-options":
-                        '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
-                    }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filtersearch, function(category, index) {
-                        return _c(
-                          "tr",
-                          { attrs: { "data-expanded": "true" } },
-                          [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(category.category_name))]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      to: "/edit-category/" + category.id
-                                    }
-                                  },
-                                  [_vm._v("Edit")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteEmployee(category.id)
+                _c("div", { staticClass: "table-responsive text-nowrap" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered",
+                      attrs: {
+                        "ui-jq": "footable",
+                        "ui-options":
+                          '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.filtersearch, function(category, index) {
+                          return _c(
+                            "tr",
+                            { attrs: { "data-expanded": "true" } },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(category.category_name))
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary btn-sm",
+                                      attrs: {
+                                        to: "/edit-category/" + category.id
                                       }
-                                    }
-                                  },
-                                  [_vm._v("Delete")]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                                    },
+                                    [_vm._v("Edit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-danger btn-sm",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deleteEmployee(category.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -50061,83 +50080,85 @@ var render = function() {
                 _c("br"),
                 _c("br"),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-bordered",
-                    attrs: {
-                      "ui-jq": "footable",
-                      "ui-options":
-                        '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
-                    }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filtersearch, function(customer, index) {
-                        return _c(
-                          "tr",
-                          { attrs: { "data-expanded": "true" } },
-                          [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(customer.name))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("img", {
-                                attrs: { src: customer.photo, width: "60" }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(customer.phone))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(customer.email))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(customer.address))]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      to: "/edit-customer/" + customer.id
-                                    }
-                                  },
-                                  [_vm._v("Edit")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteCustomer(customer.id)
+                _c("div", { staticClass: "table-responsive text-nowrap" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered",
+                      attrs: {
+                        "ui-jq": "footable",
+                        "ui-options":
+                          '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.filtersearch, function(customer, index) {
+                          return _c(
+                            "tr",
+                            { attrs: { "data-expanded": "true" } },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(customer.name))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("img", {
+                                  attrs: { src: customer.photo, width: "60" }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(customer.phone))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(customer.email))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(customer.address))]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary btn-sm",
+                                      attrs: {
+                                        to: "/edit-customer/" + customer.id
                                       }
-                                    }
-                                  },
-                                  [_vm._v("Delete")]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                                    },
+                                    [_vm._v("Edit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-danger btn-sm",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deleteCustomer(customer.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -51042,83 +51063,85 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-bordered",
-                    attrs: {
-                      "ui-jq": "footable",
-                      "ui-options":
-                        '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
-                    }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filtersearch, function(employee, index) {
-                        return _c(
-                          "tr",
-                          { attrs: { "data-expanded": "true" } },
-                          [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(employee.name))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("img", {
-                                attrs: { src: employee.photo, width: "100" }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(employee.phone))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(employee.salary))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(employee.joining_date))]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      to: "/edit-employee/" + employee.id
-                                    }
-                                  },
-                                  [_vm._v("Edit")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteEmployee(employee.id)
+                _c("div", { staticClass: "table-responsive text-nowrap" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered",
+                      attrs: {
+                        "ui-jq": "footable",
+                        "ui-options":
+                          '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.filtersearch, function(employee, index) {
+                          return _c(
+                            "tr",
+                            { attrs: { "data-expanded": "true" } },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(employee.name))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("img", {
+                                  attrs: { src: employee.photo, width: "100" }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(employee.phone))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(employee.salary))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(employee.joining_date))]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary btn-sm",
+                                      attrs: {
+                                        to: "/edit-employee/" + employee.id
                                       }
-                                    }
-                                  },
-                                  [_vm._v("Delete")]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                                    },
+                                    [_vm._v("Edit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-danger btn-sm",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deleteEmployee(employee.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -51234,63 +51257,65 @@ var render = function() {
                 _c("br"),
                 _c("br"),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-bordered",
-                    attrs: {
-                      "ui-jq": "footable",
-                      "ui-options":
-                        '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
-                    }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.orders, function(order, index) {
-                        return _c(
-                          "tr",
-                          { attrs: { "data-expanded": "true" } },
-                          [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(order.customer.name))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(order.total))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(order.pay))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(order.due))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(order.payby))]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: { to: "/view-order/" + order.id }
-                                  },
-                                  [_vm._v("View")]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                _c("div", { staticClass: "table-responsive text-nowrap" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered",
+                      attrs: {
+                        "ui-jq": "footable",
+                        "ui-options":
+                          '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.orders, function(order, index) {
+                          return _c(
+                            "tr",
+                            { attrs: { "data-expanded": "true" } },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(order.customer.name))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(order.total))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(order.pay))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(order.due))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(order.payby))]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary btn-sm",
+                                      attrs: { to: "/view-order/" + order.id }
+                                    },
+                                    [_vm._v("View")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -54533,65 +54558,69 @@ var render = function() {
                   })
                 ]),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-bordered",
-                    attrs: {
-                      "ui-jq": "footable",
-                      "ui-options":
-                        '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
-                    }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filtersearch, function(employee, index) {
-                        return _c(
-                          "tr",
-                          { attrs: { "data-expanded": "true" } },
-                          [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(employee.name))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("img", {
-                                attrs: { src: employee.photo, width: "100" }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(employee.phone))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(employee.salary))]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: { to: "/pay/salary/" + employee.id }
-                                  },
-                                  [_vm._v("Pay Salary")]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                _c("div", { staticClass: "table-responsive text-nowrap" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered",
+                      attrs: {
+                        "ui-jq": "footable",
+                        "ui-options":
+                          '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.filtersearch, function(employee, index) {
+                          return _c(
+                            "tr",
+                            { attrs: { "data-expanded": "true" } },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(employee.name))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("img", {
+                                  attrs: { src: employee.photo, width: "100" }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(employee.phone))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(employee.salary))]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary btn-sm",
+                                      attrs: {
+                                        to: "/pay/salary/" + employee.id
+                                      }
+                                    },
+                                    [_vm._v("Pay Salary")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -55036,62 +55065,68 @@ var render = function() {
                     }
                   })
                 ]),
+                _c("br"),
+                _c("br"),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-bordered",
-                    attrs: {
-                      "ui-jq": "footable",
-                      "ui-options":
-                        '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
-                    }
-                  },
-                  [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _vm.loadingstatus ? _c("tr", [_vm._m(1)]) : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filtersearch, function(salary, index) {
-                        return _c(
-                          "tr",
-                          { attrs: { "data-expanded": "true" } },
-                          [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(salary.employee.name))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(salary.salary_month))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(salary.employee.salary))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(salary.salary_date))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger btn-sm",
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.deleteSalary(salary.id)
+                _c("div", { staticClass: "table-responsive text-nowrap" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered",
+                      attrs: {
+                        "ui-jq": "footable",
+                        "ui-options":
+                          '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
+                      }
+                    },
+                    [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _vm.loadingstatus ? _c("tr", [_vm._m(1)]) : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.filtersearch, function(salary, index) {
+                          return _c(
+                            "tr",
+                            { attrs: { "data-expanded": "true" } },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(salary.employee.name))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(salary.salary_month))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(salary.employee.salary))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(salary.salary_date))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-danger btn-sm",
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.deleteSalary(salary.id)
+                                      }
                                     }
-                                  }
-                                },
-                                [_vm._v("Delete Salary")]
-                              )
-                            ])
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                                  },
+                                  [_vm._v("Delete Salary")]
+                                )
+                              ])
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -55188,58 +55223,63 @@ var render = function() {
                     }
                   })
                 ]),
+                _c("br"),
+                _c("br"),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-bordered",
-                    attrs: {
-                      "ui-jq": "footable",
-                      "ui-options":
-                        '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
-                    }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filtersearch, function(salary, index) {
-                        return _c(
-                          "tr",
-                          { attrs: { "data-expanded": "true" } },
-                          [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(salary.salary_month))]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      to: "/view-salary/" + salary.salary_month
-                                    }
-                                  },
-                                  [_vm._v("View Salary")]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                _c("div", { staticClass: "table-responsive text-nowrap" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered",
+                      attrs: {
+                        "ui-jq": "footable",
+                        "ui-options":
+                          '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.filtersearch, function(salary, index) {
+                          return _c(
+                            "tr",
+                            { attrs: { "data-expanded": "true" } },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(salary.salary_month))]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary btn-sm",
+                                      attrs: {
+                                        to:
+                                          "/view-salary/" + salary.salary_month
+                                      }
+                                    },
+                                    [_vm._v("View Salary")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -55583,101 +55623,103 @@ var render = function() {
                 _c("br"),
                 _c("br"),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-bordered",
-                    attrs: {
-                      "ui-jq": "footable",
-                      "ui-options":
-                        '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
-                    }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filtersearch, function(product, index) {
-                        return _c(
-                          "tr",
-                          { attrs: { "data-expanded": "true" } },
-                          [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(product.product_name))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(product.product_code))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("img", {
-                                attrs: {
-                                  src: product.image,
-                                  width: "50",
-                                  height: "60"
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(product.category.category_name))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(product.supplier.name))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(product.buying_price))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(_vm._s(product.product_quantity))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(product.root))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(product.buying_date))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              product.product_quantity > 0
-                                ? _c(
-                                    "span",
-                                    { staticClass: "badge badge-success" },
-                                    [_vm._v("Available")]
-                                  )
-                                : _vm._e(),
+                _c("div", { staticClass: "table-responsive text-nowrap" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered",
+                      attrs: {
+                        "ui-jq": "footable",
+                        "ui-options":
+                          '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.filtersearch, function(product, index) {
+                          return _c(
+                            "tr",
+                            { attrs: { "data-expanded": "true" } },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
                               _vm._v(" "),
-                              product.product_quantity < 1
-                                ? _c(
-                                    "span",
-                                    { staticClass: "badge badge-danger" },
-                                    [_vm._v("Stock out")]
+                              _c("td", [_vm._v(_vm._s(product.product_name))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(product.product_code))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("img", {
+                                  attrs: {
+                                    src: product.image,
+                                    width: "50",
+                                    height: "60"
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(product.category.category_name))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(product.supplier.name))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(product.buying_price))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(_vm._s(product.product_quantity))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(product.root))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(product.buying_date))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                product.product_quantity > 0
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "badge badge-success" },
+                                      [_vm._v("Available")]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                product.product_quantity < 1
+                                  ? _c(
+                                      "span",
+                                      { staticClass: "badge badge-danger" },
+                                      [_vm._v("Stock out")]
+                                    )
+                                  : _vm._e()
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary btn-sm",
+                                      attrs: { to: "/edit-stock/" + product.id }
+                                    },
+                                    [_vm._v("Add Stock")]
                                   )
-                                : _vm._e()
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: { to: "/edit-stock/" + product.id }
-                                  },
-                                  [_vm._v("Add Stock")]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -56458,84 +56500,88 @@ var render = function() {
                     }
                   })
                 ]),
+                _c("br"),
+                _c("br"),
                 _vm._v(" "),
-                _c(
-                  "table",
-                  {
-                    staticClass: "table table-bordered",
-                    attrs: {
-                      "ui-jq": "footable",
-                      "ui-options":
-                        '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
-                    }
-                  },
-                  [
-                    _vm._m(1),
-                    _vm._v(" "),
-                    _c("tbody", [
-                      _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "tbody",
-                      _vm._l(_vm.filtersearch, function(supplier, index) {
-                        return _c(
-                          "tr",
-                          { attrs: { "data-expanded": "true" } },
-                          [
-                            _c("td", [_vm._v(_vm._s(index + 1))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(supplier.name))]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("img", {
-                                attrs: { src: supplier.photo, width: "100" }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(supplier.phone))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(supplier.shopname))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(supplier.address))]),
-                            _vm._v(" "),
-                            _c(
-                              "td",
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "btn btn-primary btn-sm",
-                                    attrs: {
-                                      to: "/edit-supplier/" + supplier.id
-                                    }
-                                  },
-                                  [_vm._v("Edit")]
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "button",
-                                  {
-                                    staticClass: "btn btn-danger btn-sm",
-                                    attrs: { type: "button" },
-                                    on: {
-                                      click: function($event) {
-                                        return _vm.deleteSupplier(supplier.id)
+                _c("div", { staticClass: "table-responsive text-nowrap" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass: "table table-bordered",
+                      attrs: {
+                        "ui-jq": "footable",
+                        "ui-options":
+                          '{\n                            "paging": {\n                              "enabled": true\n                            },\n                            "filtering": {\n                              "enabled": true\n                            },\n                            "sorting": {\n                              "enabled": true\n                            }}'
+                      }
+                    },
+                    [
+                      _vm._m(1),
+                      _vm._v(" "),
+                      _c("tbody", [
+                        _vm.loadingstatus ? _c("tr", [_vm._m(2)]) : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.filtersearch, function(supplier, index) {
+                          return _c(
+                            "tr",
+                            { attrs: { "data-expanded": "true" } },
+                            [
+                              _c("td", [_vm._v(_vm._s(index + 1))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(supplier.name))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("img", {
+                                  attrs: { src: supplier.photo, width: "100" }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(supplier.phone))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(supplier.shopname))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(supplier.address))]),
+                              _vm._v(" "),
+                              _c(
+                                "td",
+                                [
+                                  _c(
+                                    "router-link",
+                                    {
+                                      staticClass: "btn btn-primary btn-sm",
+                                      attrs: {
+                                        to: "/edit-supplier/" + supplier.id
                                       }
-                                    }
-                                  },
-                                  [_vm._v("Delete")]
-                                )
-                              ],
-                              1
-                            )
-                          ]
-                        )
-                      }),
-                      0
-                    )
-                  ]
-                )
+                                    },
+                                    [_vm._v("Edit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-danger btn-sm",
+                                      attrs: { type: "button" },
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.deleteSupplier(supplier.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete")]
+                                  )
+                                ],
+                                1
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
