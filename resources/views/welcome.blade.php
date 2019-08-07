@@ -28,6 +28,7 @@
 <script src="{{ ('backend/js/jquery2.0.3.min.js') }}"></script>
 <script src="{{ ('backend/js/raphael-min.js') }}"></script>
 <script src="{{ ('backend/js/morris.js') }}"></script>
+<script src="{{ ('backend/js/iCalendar.css') }}"></script>
 
 
 
@@ -196,6 +197,17 @@
                     </router-link>
                 </li>
 
+                 <li class="sub-menu">
+                    <a href="javascript:;">
+                        <img src="/backend/images/sidebar/report.png">
+                        <span>Orders</span>
+                    </a>
+                    <ul class="sub">
+                        <li><router-link to="/orders">Today Order</router-link></li>
+                        <li><router-link to="/search-order">Search Order</router-link></li>
+                    </ul>
+                </li>
+
                 <li class="sub-menu">
                     <a href="javascript:;">
                         <img src="/backend/images/sidebar/report.png">
@@ -203,7 +215,7 @@
                     </a>
                     <ul class="sub">
                         <li><router-link to="/given-salary">Pay Salary</router-link></li>
-                        <li><router-link to="/salary">All Salary</router-link></li>
+                        <li><router-link to="/search-order">All Salary</router-link></li>
                     </ul>
                 </li>
 
@@ -224,7 +236,7 @@
  <!-- footer -->
           <div class="footer"  v-if="$route.path === '/' || $route.path === '/register' || $route.path === '/forget-password' ? false : true">
             <div class="wthree-copyright">
-              <p>© 2019 Mohaimen. All rights reserved</p>
+              <p>© 2019 Mohaimen Khalid. All rights reserved</p>
             </div>
           </div>
   <!-- / footer -->
@@ -243,6 +255,9 @@
 <script src="{{ asset('backend/js/jquery.nicescroll.js')}}"></script>
 {{-- [if lte IE 8]><script language="javascript" type="text/javascript" src="{{ asset('backend/js/flot-chart/excanvas.min.js')}}"></script><![endif] --}}
 <script src="{{ asset('backend/js/jquery.scrollTo.js')}}"></script>
+
+
+<script src="{{ asset('backend/js/iCalendar.js')}}"></script>
 <!-- morris JavaScript --> 
 
 <script type="text/javascript">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2019 at 03:52 AM
+-- Generation Time: Aug 07, 2019 at 10:42 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -82,7 +82,8 @@ INSERT INTO `customers` (`id`, `name`, `email`, `phone`, `address`, `photo`, `cr
 (2, 'Munna', 'munna@gmail.com', '0155588555', 'dhaka', 'backend/images/customer/1564937011.png', '2019-08-04 10:43:31', '2019-08-04 10:43:31'),
 (3, 'polash', 'polash@gmail.com', '0155585552', 'mymensingh', 'backend/images/customer/1564937044.png', '2019-08-04 10:44:04', '2019-08-04 10:44:04'),
 (4, 'Ali', 'ali@gmail.com', '53763746354', 'khulna', 'backend/images/customer/1564937072.png', '2019-08-04 10:44:32', '2019-08-04 10:44:32'),
-(5, 'Himel', 'himel@gmail.com', '04556564', 'khulna', 'backend/images/customer/1564937091.png', '2019-08-04 10:44:51', '2019-08-04 10:44:51');
+(5, 'Himel', 'himel@gmail.com', '04556564', 'khulna', 'backend/images/customer/1564937091.png', '2019-08-04 10:44:51', '2019-08-04 10:44:51'),
+(8, 'mohaimen', 'mohaimen@gmail.com', '01528383483', 'dhaka', 'backend/images/customer/1564997650.png', '2019-08-05 03:34:11', '2019-08-05 03:34:11');
 
 -- --------------------------------------------------------
 
@@ -131,6 +132,31 @@ CREATE TABLE `expenses` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `extras`
+--
+
+CREATE TABLE `extras` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `vat` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `logo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `favicon` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `extras`
+--
+
+INSERT INTO `extras` (`id`, `vat`, `logo`, `favicon`, `phone`, `email`, `Address`, `created_at`, `updated_at`) VALUES
+(1, '4', '', '', '', '', '', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `migrations`
 --
 
@@ -153,7 +179,82 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2019_08_03_164224_create_products_table', 5),
 (8, '2019_08_03_212007_create_expenses_table', 6),
 (9, '2019_08_04_082248_create_salaries_table', 7),
-(10, '2019_08_04_162142_create_customers_table', 8);
+(10, '2019_08_04_162142_create_customers_table', 8),
+(11, '2019_08_05_112112_create_pos_table', 9),
+(12, '2019_08_05_184303_create_extras_table', 10),
+(13, '2019_08_06_171017_create_orders_table', 11),
+(14, '2019_08_06_171129_create_order_details_table', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `qty` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_total` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `vat` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pay` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `due` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `payby` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_date` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_month` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `order_year` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `customer_id`, `qty`, `sub_total`, `vat`, `total`, `pay`, `due`, `payby`, `order_date`, `order_month`, `order_year`, `created_at`, `updated_at`) VALUES
+(7, 1, '4', '166400', '4', '173056', '567587', '565', 'HandCash', '06/08/2019', 'August', '2019', NULL, NULL),
+(8, 1, '4', '166400', '4', '173056', '4564564', '6456', 'HandCash', '06/08/2019', 'August', '2019', NULL, NULL),
+(9, 8, '1', '30000', '4', '31200', '31200', '0', 'HandCash', '07/08/2019', 'August', '2019', NULL, NULL),
+(10, 4, '2', '40900', '4', '42536', '40000', '2536', 'HandCash', '07/08/2019', 'August', '2019', NULL, NULL),
+(11, 2, '5', '132700', '4', '138008', '130000', '8008', 'HandCash', '07/08/2019', 'August', '2019', NULL, NULL),
+(12, 8, '1', '3200', '4', '3328', '3328', '0', 'HandCash', '07/08/2019', 'August', '2019', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_details`
+--
+
+CREATE TABLE `order_details` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `pro_qantity` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pro_price` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_total` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `pro_qantity`, `pro_price`, `sub_total`, `created_at`, `updated_at`) VALUES
+(7, 7, 31, '2', '7200', '14400', NULL, NULL),
+(8, 7, 29, '2', '76000', '152000', NULL, NULL),
+(9, 8, 31, '2', '7200', '14400', NULL, NULL),
+(10, 8, 29, '2', '76000', '152000', NULL, NULL),
+(11, 9, 18, '1', '30000', '30000', NULL, NULL),
+(12, 10, 13, '1', '10900', '10900', NULL, NULL),
+(13, 10, 14, '1', '30000', '30000', NULL, NULL),
+(14, 11, 31, '1', '7200', '7200', NULL, NULL),
+(15, 11, 30, '1', '18000', '18000', NULL, NULL),
+(16, 11, 29, '1', '76000', '76000', NULL, NULL),
+(17, 11, 28, '1', '1500', '1500', NULL, NULL),
+(18, 11, 23, '1', '30000', '30000', NULL, NULL),
+(19, 12, 27, '1', '3200', '3200', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -165,6 +266,23 @@ CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pos`
+--
+
+CREATE TABLE `pos` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pro_id` int(11) NOT NULL,
+  `pro_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pro_quantity` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `pro_price` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sub_total` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -200,28 +318,28 @@ INSERT INTO `products` (`id`, `category_id`, `supplier_id`, `product_name`, `pro
 (7, 1, 4, 'iphone 6', 'i254', 'S-1', '25000', '33000', '2019-08-04', '100', 'backend/images/product/1564865907.jpeg', '2019-08-03 14:58:27', '2019-08-04 09:36:10'),
 (8, 7, 4, 'web camera', 'c-4654', 'C-1', '4000', '5000', '2019-08-04', '12', 'backend/images/product/1564866007.jpeg', '2019-08-03 15:00:07', '2019-08-04 15:57:48'),
 (9, 4, 1, 'Hp 8480 laptop', 'lao-1001', 'L-1', '30000', '34000', '2019-08-05', '10', 'backend/images/product/1564941779.jpeg', '2019-08-04 12:02:59', '2019-08-04 12:02:59'),
-(10, 4, 1, 'Asus Laptop', 'lap-0236', 'L-1', '25000', '30000', '2019-08-05', '5', 'backend/images/product/1564941845.webp', '2019-08-04 12:04:05', '2019-08-04 12:04:05'),
+(10, 4, 1, 'Asus Laptop', 'lap-0236', 'L-1', '25000', '30000', '2019-08-05', '0', 'backend/images/product/1564941845.webp', '2019-08-04 12:04:05', '2019-08-04 12:04:05'),
 (11, 6, 3, 'ADATA Ram 4GB', 'r-124', 'R-1', '2000', '2500', '2019-08-05', '60', 'backend/images/product/1564941960.jpeg', '2019-08-04 12:06:00', '2019-08-04 12:06:00'),
 (12, 6, 4, 'Transet Ram 8GB', 'r-1001', 'R-2', '3400', '4400', '2019-08-05', '20', 'backend/images/product/1564942013.jpeg', '2019-08-04 12:06:53', '2019-08-04 12:06:53'),
-(13, 3, 3, 'Dell 22\'\' monitor', 'D-1012', 'M-2', '8000', '10900', '2019-08-05', '20', 'backend/images/product/1564942130.jpeg', '2019-08-04 12:08:50', '2019-08-04 12:08:50'),
-(14, 3, 3, 'Dell 24\" monitor', 'd-5685', 'M-1', '25000', '30000', '2019-08-05', '12', 'backend/images/product/1564942178.jpeg', '2019-08-04 12:09:38', '2019-08-04 12:09:38'),
+(13, 3, 3, 'Dell 22\'\' monitor', 'D-1012', 'M-2', '8000', '10900', '2019-08-05', '19', 'backend/images/product/1564942130.jpeg', '2019-08-04 12:08:50', '2019-08-07 06:04:35'),
+(14, 3, 3, 'Dell 24\" monitor', 'd-5685', 'M-1', '25000', '30000', '2019-08-05', '11', 'backend/images/product/1564942178.jpeg', '2019-08-04 12:09:38', '2019-08-07 06:04:35'),
 (15, 3, 4, 'Dell 18\" monitor', 'd-586', 'M-1', '4000', '5000', '2019-08-05', '30', 'backend/images/product/1564942217.jpeg', '2019-08-04 12:10:17', '2019-08-04 12:10:17'),
 (16, 3, 4, 'Dell 18.5\" monitor', 'm-4441', 'M-2', '5500', '6500', '2019-08-05', '42', 'backend/images/product/1564942261.jpeg', '2019-08-04 12:11:01', '2019-08-04 12:11:01'),
 (17, 5, 4, 'Apple watch series 4', 'A-101', 'W-1', '34000', '44000', '2019-08-05', '5', 'backend/images/product/1564942374.webp', '2019-08-04 12:12:54', '2019-08-04 12:12:54'),
-(18, 5, 3, 'Apple watch series 3', 'A-456', 'W-1', '25000', '30000', '2019-08-05', '0', 'backend/images/product/1564942421.jpeg', '2019-08-04 12:13:41', '2019-08-04 14:16:18'),
+(18, 5, 3, 'Apple watch series 3', 'A-456', 'W-1', '25000', '30000', '2019-08-05', '0', 'backend/images/product/1564942421.jpeg', '2019-08-04 12:13:41', '2019-08-07 05:51:08'),
 (19, 1, 1, 'Xiaomi Note 7 4/64GB', 'X-1254', 'X-1', '17000', '21000', '2019-08-05', '60', 'backend/images/product/1564968149.png', '2019-08-04 19:22:29', '2019-08-04 19:22:29'),
 (20, 1, 4, 'Samsung Note 9', 'S-45774', 'S-1', '64000', '74000', '2019-08-05', '12', 'backend/images/product/1564968204.jpeg', '2019-08-04 19:23:25', '2019-08-04 19:23:25'),
 (21, 7, 1, 'keyboard A4tech', 'K-1545', 'K-1', '1200', '2200', '2019-08-05', '42', 'backend/images/product/1564968427.png', '2019-08-04 19:27:07', '2019-08-04 19:27:07'),
 (22, 8, 3, 'Gigabyte HG-8568', 'G-573547', 'MO-1', '12000', '15000', '2019-08-05', '20', 'backend/images/product/1564968664.png', '2019-08-04 19:31:04', '2019-08-04 19:31:04'),
-(23, 14, 4, 'Samsung AC', 'AC-548', 'G-1', '25000', '30000', '2019-08-05', '20', 'backend/images/product/1564969197.jpeg', '2019-08-04 19:39:57', '2019-08-04 19:39:57'),
+(23, 14, 4, 'Samsung AC', 'AC-548', 'G-1', '25000', '30000', '2019-08-05', '19', 'backend/images/product/1564969197.jpeg', '2019-08-04 19:39:57', '2019-08-07 13:11:06'),
 (24, 12, 1, 'samsung Headphone', 'He-46875', 'T-1', '800', '1200', '2019-08-05', '50', 'backend/images/product/1564969242.png', '2019-08-04 19:40:42', '2019-08-04 19:40:42'),
 (25, 15, 4, 'Lg LED tv 40\"', 'T-5465', 'G-5', '50000', '60000', '2019-08-05', '15', 'backend/images/product/1564969316.jpeg', '2019-08-04 19:41:56', '2019-08-04 19:41:56'),
 (26, 12, 1, 'mini headphone', 'he-855', 'H-1', '500', '800', '2019-08-05', '60', 'backend/images/product/1564969362.jpeg', '2019-08-04 19:42:42', '2019-08-04 19:42:42'),
-(27, 16, 5, 'Blander mini', 'BL-8569', 'K-4', '2200', '3200', '2019-08-05', '22', 'backend/images/product/1564969433.png', '2019-08-04 19:43:53', '2019-08-04 19:43:53'),
-(28, 16, 1, 'Dry Iron', 'FF-85', 'K-1', '800', '1500', '2019-08-05', '13', 'backend/images/product/1564969484.png', '2019-08-04 19:44:45', '2019-08-04 19:44:45'),
-(29, 11, 3, 'Nikon D5600', 'CA-586', 'C-1', '56000', '76000', '2019-08-05', '20', 'backend/images/product/1564969598.jpeg', '2019-08-04 19:46:39', '2019-08-04 19:46:39'),
-(30, 11, 4, 'nikon coolpix', 'N-8757', 'CA-1', '14000', '18000', '2019-08-05', '8', 'backend/images/product/1564969660.jpeg', '2019-08-04 19:47:40', '2019-08-04 19:47:40'),
-(31, 10, 3, 'western green 2T', 'HDD-56655', 'H-5', '5200', '7200', '2019-08-05', '40', 'backend/images/product/1564969771.jpeg', '2019-08-04 19:49:31', '2019-08-04 19:49:31');
+(27, 16, 5, 'Blander mini', 'BL-8569', 'K-4', '2200', '3200', '2019-08-05', '21', 'backend/images/product/1564969433.png', '2019-08-04 19:43:53', '2019-08-07 13:11:32'),
+(28, 16, 1, 'Dry Iron', 'FF-85', 'K-1', '800', '1500', '2019-08-05', '12', 'backend/images/product/1564969484.png', '2019-08-04 19:44:45', '2019-08-07 13:11:06'),
+(29, 11, 3, 'Nikon D5600', 'CA-586', 'C-1', '56000', '76000', '2019-08-05', '13', 'backend/images/product/1564969598.jpeg', '2019-08-04 19:46:39', '2019-08-07 13:11:06'),
+(30, 11, 4, 'nikon coolpix', 'N-8757', 'CA-1', '14000', '18000', '2019-08-05', '7', 'backend/images/product/1564969660.jpeg', '2019-08-04 19:47:40', '2019-08-07 13:11:05'),
+(31, 10, 3, 'western green 2T', 'HDD-56655', 'H-5', '5200', '7200', '2019-08-05', '33', 'backend/images/product/1564969771.jpeg', '2019-08-04 19:49:31', '2019-08-07 13:11:05');
 
 -- --------------------------------------------------------
 
@@ -335,9 +453,27 @@ ALTER TABLE `expenses`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `extras`
+--
+ALTER TABLE `extras`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order_details`
+--
+ALTER TABLE `order_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -345,6 +481,12 @@ ALTER TABLE `migrations`
 --
 ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Indexes for table `pos`
+--
+ALTER TABLE `pos`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `products`
@@ -385,7 +527,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `employees`
@@ -400,10 +542,34 @@ ALTER TABLE `expenses`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `extras`
+--
+ALTER TABLE `extras`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `order_details`
+--
+ALTER TABLE `order_details`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `pos`
+--
+ALTER TABLE `pos`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`

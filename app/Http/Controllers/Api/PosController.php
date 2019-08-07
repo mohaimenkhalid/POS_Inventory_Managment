@@ -70,4 +70,39 @@ class PosController extends Controller
         //clear cart..
         Pos::truncate();
     }
+
+
+    public function todaySell()
+    {
+        $date = date('d/m/Y');
+        $sell = Order::where('order_date', $date)->sum('total');
+        return response()->json($sell);
+    }
+
+    public function todayIncome()
+    {
+        $date = date('d/m/Y');
+        $income = Order::where('order_date', $date)->sum('pay');
+        return response()->json($income);
+    }
+
+    public function sale()
+    {
+        $date = date('d/m/Y');
+        $sale = Order::where('order_date', $date)->sum('qty');
+        return response()->json($sale);
+    }
+
+    public function due()
+    {
+        $date = date('d/m/Y');
+        $due = Order::where('order_date', $date)->sum('due');
+        return response()->json($due);
+    }
+
+    public function stockout()
+    {
+        $product = Product::where('product_quantity', 0)->get();
+        return response()->json($product);
+    }
 }
