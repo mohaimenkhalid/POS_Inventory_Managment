@@ -64,13 +64,13 @@
 
 
         <div class="col-md-6 w3agile-notifications">
-            <div class="notifications">
+            <div class="notifications" >
                 <!--notification start-->
                 
                     <header class="panel-heading">
                         Notification 
                     </header>
-                    <div class="notify-w3ls">
+                    <div class="notify-w3ls" style="height: 400px; overflow: scroll;">
 
                         <p v-if="loadingstatus" style="text-align: center"><img src="/backend/images/loading.gif" ></p>
                        
